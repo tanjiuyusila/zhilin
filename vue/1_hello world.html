@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue基础语法</title>
+    <!--Vue大部分只操作data数据-->
+</head>
+<body>
+    <div id="app">
+        {{msg}}    //大括号比较常用。
+        <!--由于电脑慢，网页上会有可能先出现{{msg}}再显示HELLO WORLD，为解决，在标签内部，写指令：v-text=“msg”-->
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',         //选择器；挂载元素：相当于索引，将el的全部语法挂载到div上。
+            data:{
+                msg:'hello world'           //    对象里放键值对，
+            }
+        })
+    //    所有el,data都当作vm下面的属性,前面会有$符号，但data里面的属性，例如msg，就没有$符号。
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="val in arr">      <!--v-for 出现在那个标签里，那个标签就会循环多次，不写就不能用index，写{{$index}}会报错-->
+            {{val}} valvalval
+        </li>
+        <li v-for="(xx,index) in arr">       <!--val,i必须写，不能缺省，但可以不用-->
+            值是{{xx}},索引是{{index}}
+        </li>
+        <li v-for="i in 3">  <!--从1开始循环多次-->
+            {{i}}
+            {{msg}}
+        </li>
+        <li v-for="(val,index) in Fam">  <!--往数组里加对象：vm.Fam.push({name:'maoni',age:2})-->
+            家人姓名是:{{val.name}} 年龄是：{{val.age}} 索引是：{{index}}      <!--{{里可以写表达式，拼接字符串}}-->
+        </li>
+        <li v-for="val in obj">
+            {{val}}
+        </li>
+        <li v-for="(val,key,index) in obj">
+            属性值：{{val}} 键 {{key}} 索引：{{index}}
+        </li>
+    </ul>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'hello world',
+            arr:[111,222,333,444],
+            Fam:[{              //数组里面是对象，很常见
+                name:'yzl',
+                age:24
+            },{
+                name:'yzy',
+                age:24
+            },{
+                name:'sl',
+                age:49
+            }],
+            obj:{
+              a:1,
+              b:2,
+              c:3
+            }
+        }
+    })
+</script>
+</body>
+</html>

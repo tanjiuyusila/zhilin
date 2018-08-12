@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-text</title>
+</head>
+<body>
+<div id="app" v-text="msg">     <!--所有指令放在标签里当属性用-->
+    <!--由于电脑，网页上会有可能先出现{{msg}}再显示HELLO WORLD，为解决，在标签内部，写指令：v-text=“msg”-->
+    sss         <!--v-text会把里面内容替换掉-->
+</div>
+<div id="app1" v-html="msg">
+    <!--和jquery里面text，html一样-->
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'<h1>v-text</h1>'
+        }
+    })
+    var vm1 = new Vue({
+        el:'#app1',
+        data:{
+            msg:'<h1>v-html</h1>'
+        }
+    })
+
+
+ </script>
+</body>
+</html>

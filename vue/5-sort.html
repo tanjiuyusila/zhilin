@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-sort</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(val,index) in sortFam">
+            家人姓名是:{{val.name}} 年龄是：{{val.age}} 索引是：{{index}}
+        </li>
+    </ul>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'hello world',
+            Fam:[{              //数组里面是对象，很常见
+                name:'yzl',
+                age:24
+            },{
+                name:'yzy',
+                age:24
+            },{
+                name:'sl',
+                age:49
+            }],
+        },
+        computed:{  //计算属性:通过其他属性(Fam)计算得来；
+            // Fam:function () { }  正常语法
+            // Fam(){                 es6 语法,虽然是个函数，可以当作变量用，用Fam(){}，会报错，Fam已在data定义；
+            //     return Fam.sort(function (a,b) {
+            //         return a.age-b.age;
+            //     })
+            // }
+
+
+           // sortFam(){
+           //     console.log(this)  //this 指代vue:==>computed方=方法里面this都是vue对象；
+           //     return Fam.sort(function (a,b) {
+           //         return a.age-b.age;
+           //     })
+           // }
+
+
+            sortFam(){
+              return this.Fam.sort(function (a,b) {
+                   return a.age-b.age;                       //排序
+              })
+            },
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if v-show</title>
+</head>
+<body>
+<div id="app" >
+   <p v-if="msg">
+       212544567
+   </p>
+    <h1 v-if="xx == 'A'">
+        AAAAAAA
+    </h1>
+    <h1 v-else-if="xx == 'B'">
+        BBBBBBBB
+    </h1>
+    <h1 v-else>
+        CCCCCCC
+    </h1>
+    <template v-if="msg">   <!--需求：div永远不显示，里面的内容一起显示隐藏：将div换成template标签，不是html有效标签，是vue自带的标签，类似于组件,不显示的时候不会渲染，与display：none不同-->
+        <p>111</p>
+        <p>222</p>
+    </template >
+    <div v-show="msg">
+        <!--类似于display：none；与if显示辨析:频繁切换用show，css属性切换比重新渲染快得多；tamplate属性下没有v-show；v-show后面不能加v-else-->
+        111
+    </div>
+</div>
+<script src="vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:false,
+            xx:'A'
+        }
+    });
+
+
+
+</script>
+
+</body>
+</html>
