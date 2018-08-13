@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="cart">
+    <button>添加商品</button>
+    <table id="tbl">
+        <thead>
+        <tr>
+            <th></th>
+            <th>商品图片</th>
+            <th>商品信息</th>
+            <th>赠送</th>
+            <th>商品金额</th>
+            <th>商品数量</th>
+            <th>总金额</th>
+            <th>编辑</th>
+        </tr>
+        </thead>
+        <tbody id="product-list">
+        <tr v-for="(val,index) in p_list">
+            <td><input type="checkbox" v-model="checkList" :value="val"></td>           <!--value动态属性-->
+            <td><img src="" alt="" width="100"></td>
+            <td>{{val.productName}}</td>            <!--从p_list取出对象val,各个属性...-->
+            <td>
+                <ul>
+                    <li v-for="part in val.parts">
+                        {{part.partsName}}
+                    </li>
+
+                </ul>
+            </td>
+            <td class="price">{{val.productName}}</td>
+            <td>
+                <button @click="sub(val)">-</button>                <!--sub();add()要传值进去-->
+                <input type="text" v-model="val.productQuentity" @blur='filter(val)'>     <!--@blur 对输入小于0的值进行过滤-->
+                <button @click="add(val)">+</button>
+            </td>
+            <td class="total-price">{{val.productQuentity * val.productPrice }}</td>
+            <td><a href="javascript:;" @click="del(val,index)">删除</a></td>
+
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="6"></td>       <!--将6列合成1列语法-->
+            <td>
+                总计：<span id="total">{{total()}}</span></td>
+            <td>
+                <button>结账</button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<script src="vue.js"></script>
+<script src="axios.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#cart',
+        data:{
+            p_list:[],
+            checkList:[]
+        },
+        methods:{
+            sub(val){
+                if(val.productQuentity>0){
+                    val.productQuentity--;
+                }
+            },
+            add(val){
+                val.productQuentity++;
+            },
+            filter(val){
+                if(val.productQuentity<0){
+                    val.productQuentity=0;
+                }
+            },
+            total(){
+                  let a = 0;
+                  this.checkList.forEach(function(elem){                //循环数组求得总价，elem是checkList里面对象，
+                      a += (elem.productQuentity * elem.productPrice)
+                  })
+                return a;
+            },
+            del(val,index){
+                this.p_list.splice(index,1);            //splice方法删除
+                this.checkList.splice(this.checkList.indexOf(val),1);           //删除总价格
+            }
+        },
+        created(){
+            //返回的是promise对象
+            axios.get('cart.json').then((res)=>{
+                this.p_list = res.data.result.productList;
+            });
+        },
+    })
+</script>
+</body>
+</html>

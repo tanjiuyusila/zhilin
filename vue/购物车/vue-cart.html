@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="cart">
+    <button>添加商品</button>
+    <table id="tbl">
+        <thead>
+        <tr>
+            <th></th>
+            <th>商品图片</th>
+            <th>商品信息</th>
+            <th>赠送</th>
+            <th>商品金额</th>
+            <th>商品数量</th>
+            <th>总金额</th>
+            <th>编辑</th>
+        </tr>
+        </thead>
+        <tbody id="product-list">
+        <tr>
+            <td><input type="checkbox" value="[object Object]"></td>
+            <td><img src="img/1.jpg" alt="" width="100"></td>
+            <td>黄鹤楼</td>
+            <td>
+                <ul>
+                    <li>
+                        打火机
+                    </li>
+                    <li>
+                        苹果皮
+                    </li>
+                </ul>
+            </td>
+            <td class="price">19</td>
+            <td>
+                <button class="sub" @click="fun2">-</button>
+                <input type="text" v-model="val1">
+                <button class="add" @click="fun1">+</button>
+            </td>
+            <td class="total-price" v-model="val3">{{val3}}</td>
+            <td><a href="javascript:;" class="del">删除</a></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" value="[object Object]"></td>
+            <td><img src="img/2.jpg" alt="" width="100"></td>
+            <td>加多宝</td>
+            <td>
+                <ul>
+                    <li>
+                        打火机111
+                    </li>
+                    <li>
+                        苹果皮
+                    </li>
+                </ul>
+            </td>
+            <td class="price">8</td>
+            <td>
+                <button class="sub" @click="fun2">-</button>
+                <input type="text" v-model="val2">
+                <button class="add" @click="fun1">+</button>
+            </td>
+            <td class="total-price" v-model="val4">{{val4}}</td>
+            <td><a href="javascript:;" class="del">删除</a></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="6"></td>
+            <td>
+                总计：<span id="total">0</span></td>
+            <td>
+                <button>结账</button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#cart',
+        data:{
+            val1:0,
+            val2:0,
+            val3:0,
+            val4:0,
+
+        },
+        methods:{
+            fun1(){
+                this.val1 = this.val1*1 + 1 ;
+                this.val3 =this.val1 * 19;
+            },
+            fun2(){
+                this.val1 -= 1;
+                if(this.val1<=0){
+                    this.val1=0;
+                };
+                this.val3 =this.val1 * 19;
+            },
+        }
+
+    })
+</script>
+</body>
+</html>
