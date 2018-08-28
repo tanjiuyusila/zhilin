@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on</title>
+    <style>
+        #div1{
+            width: 300px;
+            height: 300px;
+            background: #ff0000;
+        }
+        #div2{
+            width: 200px;
+            height: 200px;
+            background: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--<button v-on:click="fun">click</button>     绑定点击事件-->
+        <!--<button @click="fun(2)">click</button>       &lt;!&ndash;简写形式，比较常用&ndash;&gt;-->
+        <button @click="fun(2,$event)">click</button>       <!--传事件，但一般可以不传$event，在对象里直接可以用-->
+        <div id="div1" @click="click1">
+
+            <div id="div2" @click.stop="click2">    <!--.stop 事件的修饰符，阻止事件传播-->
+            </div>
+        </div>
+        {{msg}}
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:0,
+            },
+            methods:{
+                fun(a,e){
+                    console.log(a)
+                    this.msg += a;   //忘记This
+                    console.log(e)
+                    console.log(event)    //函数不传event，用此方法调用event，
+                },
+                click1(){
+                    console.log(111)
+                },
+                click2(){
+                    console.log(222)        //会出现冒泡事件，return false禁止默认行为，不能取消冒泡事件。
+                    // event.stopPropagation() //原生解决冒泡，阻止事件传播
+                    // event.defaultPrevented() //组织默认行为
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
