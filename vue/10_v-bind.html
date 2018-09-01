@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind</title>
+    <!--绑定属性值，在属性中，class和style是特殊的，做了特殊处理-->
+    <style>
+        .red{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+        }
+        .font{
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--<div id="div1" v-bind:title="t">-->
+        <button @click="click">click</button>
+        <!--<div id="div1" :title="t" :class="{red:isRed,font:isFont}">           &lt;!&ndash;简写形式是'：';   class,style是特殊的,接收的是对象,冒号！！！&ndash;&gt;-->
+        <!--<div id="div1" :title="t" :class="classObj">        &lt;!&ndash;法二&ndash;&gt;-->
+        <!--<div id="div1" :title="t" :class="[classA,classB]">      &lt;!&ndash;逗号分隔&ndash;&gt;-->
+        <!--<div id="div1" :style="{background:styleA,'font-size':styleB}">      &lt;!&ndash;对象；属性名带‘-’时，要加引号&ndash;&gt;-->
+        <!--<div id="div1" :style="styleObj">       &lt;!&ndash;法二&ndash;&gt;-->
+        <div id="div1" :style="[style1,style2]">          <!--法三;操作类更加方便-->
+            ddd
+        </div>
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                t:'xx',
+                isRed:false,
+                isFont:false,
+                classObj:{red:false,font:false}  , //法二：很少见，把上面的拿下来
+                classA:'red',               //不是变量加引号,法三：直接修改类
+                classB:'font',
+                styleA:'',     //vm.styleA='red';vm.styleB = '40px';    引号要注意
+                styleB:'',
+                styleObj:{
+                    background:'red',
+                    'font-size':'40px'
+                },
+                style1:{
+                    background:'red',
+                },
+                style2:{
+                    'font-size':'40px'
+                },
+            },
+
+            methods:{
+                click(){
+                    this.isRed = ! this.isRed;
+                    this.isFont = ! this.isFont;
+                }
+            },
+
+
+        })
+    </script>
+
+</body>
+</html>
