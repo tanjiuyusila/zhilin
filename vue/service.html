@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>service</title>
+    <!--需求：点击变红，再次点击变回绿色，计算选中红色的数额-->
+    <style>
+        li{
+            list-style: none;
+            height: 50px;
+            margin-bottom: 10px;
+            background: green;
+            line-height: 50px;
+            padding: 0 20px;
+        }
+        #app{
+            margin: 0 auto;
+            width: 400px;
+        }
+        h1{
+            text-align: center;
+        }
+        span{
+            float:right;
+        }
+        .red{
+            background: #ff0000;
+        }
+        .green{
+            background: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <h1>services</h1>
+        <ul>
+             <!--<li v-for="obj in arr" @click="changebg" :class="{red:isRed}">  出现问题，点击之后所有li都会变红，因为这个是公共样式。因此，每个对象因该有他自己的样式-->
+            <!--<li v-for="(obj,index) in arr" @click="changebg(index)" :class="{red:obj.active}">      法1，直接传对象-->
+
+            <li v-for="obj in arr" @click="fn(obj)" :class="{red:obj.active}">       <!--法2，直接传对象-->
+            <!--<li v-for="obj in arr" @click="obj.active = !obj.active" :class="{red:obj.active}">  法3-->
+                {{obj.name}} <span>{{obj.price}}</span>       <!--让price右浮-->
+             </li>
+        </ul>
+        <hr>
+        <!--total:   <span>{{msg}}</span>        &lt;!&ndash;总值方法一&ndash;&gt;-->
+        <!--total:   <span>{{total()}}</span>          &lt;!&ndash;总值方法二&ndash;&gt;-->
+        total:   <span>{{total}}</span>          <!--总值方法三；计算属性不用加括号，和函数区别：计算属性有缓存，属性是通过其他属性赋值，只要依赖的属性不变，计算属性就不会重新计算，函数是调用一次，计算一次-->
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                isRed:false,
+                msg:0,
+                arr:[
+                    {
+                        name:'aaa',
+                        price:234,
+                        active:false,
+                    },
+                    {
+                        name:'bbb',
+                        price:927,
+                        active:false,
+                    },
+                    {
+                        name:'ccc',
+                        price:247,
+                        active:false,
+                    },
+                    {
+                        name:'ddd',
+                        price:316,
+                        active:false,
+                    },
+                    {
+                        name:'eee',
+                        price:532,
+                        active:false,
+                    },
+                ],
+            },
+            methods:{
+                // changebg(index){
+                //     // event.target.active = true;   错误
+                //     this.arr[index].active = ! this.arr[index].active;   法1
+                //     // obj.active = !obj.active
+                // }
+
+                fn(obj){
+                     obj.active = !obj.active;          // 法2
+                    // if(obj.active){
+                    //     this.msg += obj.price        //计算总值方法一
+                    // }else{
+                    //     this.msg -= obj.price
+                    // }
+                    },
+                // total(){
+                //     let sum = 0;
+                //     this.arr.forEach(function(elem,index){
+                //         if(elem.active){                        //计算总值方法二，类似于计算属性
+                //             sum += elem.price;
+                //         }
+                //     })
+                //     return sum;
+                // }
+            },
+            computed:{
+                total(){
+                    let sum = 0;
+                    this.arr.forEach(function(elem,index){
+                        if(elem.active){                        //计算总值方法二，类似于计算属性
+                            sum += elem.price;
+                        }
+                    })
+                    return sum;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
