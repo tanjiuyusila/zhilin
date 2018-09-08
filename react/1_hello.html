@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+    <div id="root">
+         啊啊啊
+    </div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>         <!--转ed6语法-->
+    <script type="text/babel">
+        ReactDOM.render(
+            <div>
+                <h1>helloworld</h1>
+                <p>react里面的两个参数，用逗号分隔。</p>
+            </div>
+            ,
+            document.getElementById('root')
+        );                                                               // react里面的两个参数，用逗号分隔。div里面的内容渲染到div里，覆盖div中之前的内容
+
+
+
+    </script>
+</body>
+</html>
