@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件方法一</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+        // let Welcome = () =>{
+        //     return(
+        //         <h1>helloworld</h1>
+        //     );
+        // }
+        // ReactDOM.render(
+        //     <Welcome/>
+        //     ,
+        //     document.getElementById('root')
+        // );
+        // //组件方法一：函数，es6语法,称为无状态组件；方法二：用类class来写
+
+
+        // let Welcome = (props) =>{
+        //     return(
+        //         <div>
+        //             <h1>{props.name}</h1>
+        //             <p>{props.age}</p>
+        //
+        //         </div>
+        //     );
+        // }
+        // ReactDOM.render(
+        //     <Welcome name="姚之琳" age="24"/>               //传参数 用props，类似于es6
+        //     ,
+        //     document.getElementById('root')
+        // );
+
+        let Welcome = (props) =>{
+            return(
+                <div>
+                    <h1>{props.name}</h1>
+                    <p>{props.age}</p>
+                    <p>{props.children}</p>
+
+                </div>
+            );
+        //    return里只能有一个根元素
+        }
+        ReactDOM.render(
+            <Welcome name="姚之琳" age="24">20180908</Welcome>         //标签之间有内容,用children
+            ,
+            document.getElementById('root')
+        );
+
+    </script>
+</body>
+</html>

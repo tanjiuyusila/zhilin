@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件定义方法二</title>
+    <!--有状态组件-->
+</head>
+<body>
+    <div id="root">
+
+    </div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+       // class Welcome extends React.Component{
+       //     render(){
+       //         return <h1>2018</h1>
+       //     }
+       // }
+       //  ReactDOM.render(
+       //      <Welcome></Welcome>
+       //      ,
+       //      document.getElementById('root')
+       //  );
+
+       class Welcome extends React.Component{
+           constructor(props){
+               super(props)
+               console.log(props)
+           }
+           //属性写在constructor里面
+           render(){
+               return <h1>{this.props.name} {this.props.children}</h1>
+           //    访问方法不同，类中是属性
+           }
+       //    方法写在render里
+       }
+       ReactDOM.render(
+           <Welcome name="姚之琳" age="24">20180908</Welcome>
+           ,
+           document.getElementById('root')
+       );
+
+    </script>
+</body>
+</html>
