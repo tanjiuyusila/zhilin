@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>state</title>
+</head>
+<body>
+<div id="root">
+
+</div>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="browser.min.js"></script>
+<script type="text/babel">
+    // state是用来修改的，只在类中有，有生命周期，函数中没有。props不能修改，用来传值。需求:count=0变成count=2;
+    class Welcome extends React.Component{
+        constructor(props){
+            super(props);
+            console.log(props)
+            this.state={
+
+                count:0,                 //state是属性，一个对象
+            }
+        }
+        add(){
+            console.log(this);
+            //修改state，用setState
+            this.setState(
+                {
+                    count:2,    //此时this undefined所以不好使因此需要修改this，详情见4_call apply bind
+                }
+            )
+        }
+        render(){
+            return (
+                <div>
+                    <button onClick={this.add.bind(this)}>click</button>
+                    <h1> this.add>{this.props.name} {this.props.age} {this.props.children} {this.state.count}</h1>
+                </div>
+                )
+                        //add不加（），加（）的话直接调用
+        }               // 用div套上，只有一个根元素
+    }
+    ReactDOM.render(
+        <Welcome name="姚之琳" age="24">20180908</Welcome>
+        ,
+        document.getElementById('root')
+    );
+
+</script>
+</body>
+</html>

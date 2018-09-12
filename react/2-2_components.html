@@ -14,7 +14,7 @@
     <script src="browser.min.js"></script>
     <script type="text/babel">
        // class Welcome extends React.Component{
-       //     render(){
+       //     render(){                           //固定的，用来返回渲染到页面的东西 
        //         return <h1>2018</h1>
        //     }
        // }
@@ -27,7 +27,7 @@
        //传参数
        class Welcome extends React.Component{
            constructor(props){
-               super(props);    //继承父类的
+               super(props);    //继承父类的，props只能传值，不能修改，用于组件通信，想要修改要用state
                console.log(props)//自己的方法写在constructor里
            }
            //属性写在constructor里面
@@ -35,7 +35,7 @@
                return <h1>{this.props.name} {this.props.children}</h1>
            //    访问方法不同，类中是属性，所以用this.
            }
-       //    方法写在render里
+       //    方法写在下面
        }
        ReactDOM.render(
            <Welcome name="姚之琳" age="24">20180908</Welcome>

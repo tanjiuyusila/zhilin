@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改this</title>
+</head>
+<body>
+    <div id="div1">
+        aaa
+    </div>
+    <script>
+        // function a() {
+        //     console.log(this);  //此时this指向window，
+        // };
+        var oDiv = document.getElementById('div1')
+
+        // setInterval(function () {
+        //     console.log(this);    //此时this指向window，
+        // },500);
+        // oDiv.onclick=function(){
+        //     console.log(this.innerHTML)
+        //     setTimeout(function () {
+        //         console.log(this.innerHTML)
+        //     },1000)                                       //this指向window，显示undefined
+        // }
+
+        // oDiv.onclick=function(){
+        //     console.log(this.innerHTML)
+        //     setTimeout(() => {
+        //         console.log(this.innerHTML)
+        //     },1000)                                       //改法1：箭头函数
+        // }
+
+        oDiv.onclick=function(){
+            console.log(this.innerHTML)
+            console.log(this);   //这里的this是点击的函数，只有在timeout里面this指向不对。
+            setTimeout((function (){
+                console.log(this.innerHTML)
+            }).bind(this),1000)                       //函数立即调用，在function外套一层函数，不能用call，apply，因为会立即调用，bind后面不加括号，不会立即调用。
+        }
+
+        // var obj = {
+        //     name:'yzl',
+        // }
+        // function a(name,age) {
+        //         console.log(this,name,age);  //想要在调用a的时候，指向obj；
+        //     };
+        // a.call(obj,'xxx',25);            //改法1：call
+        // a.apply(obj,['xxx',25])  ;                 //改法2：apply;和call区别，参数用数组
+        // a.bind(obj,'xxx',25)()     ;           //改法3：bind，想要调用必须加括号
+    </script>
+</body>
+</html>
