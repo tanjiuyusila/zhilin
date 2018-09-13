@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+</head>
+<body>
+    <div id="root">
+        aaa
+    </div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+        class Welcome extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={
+                    count:0,
+                }
+        };
+            add(num,event){
+                this.setState({
+                    count:2
+                })
+                console.log(num,event)
+                console.log(this)
+
+            }
+            //另一种绑定方式，箭头函数,一般来说bind比较推荐,add后面必须要加括号，否则不会调用
+            render(){
+                return(
+                    <div>
+                        <button value="aaa" onClick={() =>{this.add(1,event)}} ref="btn">click</button>
+                        <h1 ref="hh">{this.props.name} {this.props.children} {this.state.count}</h1>
+                    </div>
+                    )
+            }
+        }
+        ReactDOM.render(
+            <div>
+                <Welcome name="yzl">24</Welcome>
+            </div>,
+            document.getElementById('root')
+        )
+
+    </script>
+</body>
+</html>

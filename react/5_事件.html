@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+</head>
+<body>
+    <div id="root">
+        aaa
+    </div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+        class Welcome extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={
+                    count:0,
+                }
+        };
+            add(num,event){    //要接受event才能使用，不接受的话value取不到,并且只能取到自带属性，xx就取不到，取到的不是真是的DOM
+                this.setState({
+                    count:2
+                })
+                // console.log(event)
+                // console.log(event.target)                             //法1：通过event
+                // console.log(event.target.value)
+                // event.target.style.background="red"
+
+                //方法2：通过ref                         区别：target只能取到事件源，ref可以取任何想要的元素
+                console.log(this.refs.btn)
+                console.log(this.refs.hh)
+                console.log(num,event)                         //传参数
+
+
+            }
+            render(){
+                return(
+                    <div>
+                        <input type="text" value="aaa" onChange={this.add.bind(this)}></input>
+                        <button value="aaa" onClick={this.add.bind(this,1)} ref="btn">click</button>
+                        <h1 ref="hh">{this.props.name} {this.props.children} {this.state.count}</h1>
+                    </div>
+                    )
+            }
+        }
+            //input框要加结尾Expected corresponding JSX closing tag for <input> 只有一个<input>不行，或写成<input/>，
+        ReactDOM.render(
+            <div>
+                <Welcome name="yzl">24</Welcome>
+            </div>,
+            document.getElementById('root')
+        )
+
+    </script>
+</body>
+</html>
