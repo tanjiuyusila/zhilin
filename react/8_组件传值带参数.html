@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件传值</title>
+    <!--父组件向子组件传值用props；-->
+    <!--需求：子组件向父组件传值，点击子组件，更改父组件内容-->
+</head>
+<body>
+    <div id="root">
+
+    </div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+        class Main extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    msg:'商品列表'
+                }
+            }
+            change(msg){
+                this.setState({
+                    msg:msg
+                })
+            }
+            //点击电视修改商品列表，在电视处传一个新属性，属性值是change函数，传的时候要bind一下。那么此时，Product类里面收到的props就包含一个myClick属性
+            render(){
+               return(
+                    <div>
+                        <h1 >{this.state.msg}</h1>
+                        <Product name="电视" myClick={this.change.bind(this)}></Product>
+                        <Product name="手机"></Product>
+                    </div>
+               )
+            }
+        }
+        class Product extends React.Component{
+            constructor(props){
+                super(props)
+            }
+            render(){
+                return(
+                    <div onClick={
+                        () => {
+                            this.props.myClick('买买买')
+                        }
+                    }>
+                        <span>{this.props.name}</span>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <div>
+                <Main> </Main>
+            </div>,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>
