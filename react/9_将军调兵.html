@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>将军调兵</title>
+</head>
+<body>
+    <div id="root"> </div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+        class Main extends React.Component{
+            constructor(props){
+                super(props)
+                this.state={
+                    count:100              //后期这个数会被修改，所以存到state里面
+                }
+            }
+            change(arg){
+                this.setState({
+                    count:this.state.count - arg
+                })
+            }
+            //想要当人数不够的术后不出现负数，要将count值出给子组件，做判断
+            render(){
+                    return(
+                        <div>
+                            <h1>剩余士兵数量：{this.state.count}</h1>
+                            <Gen name="a" num="100" value={10} count={this.state.count} myClick={this.change.bind(this)}></Gen>
+                            <Gen name="b" num="80" value={20} count={this.state.count} myClick={this.change.bind(this)}></Gen>
+                        </div>
+                    )
+            }
+        }
+        //点击调兵的时候，士兵数量是从主组件里面props传过来的，不能修改；解决方法：存入state，用state来修改
+        //传值的时候，num="100"是字符串。可以写成num={100},变成数字
+        class Gen extends React.Component{
+            constructor(props) {
+                super(props);
+                this.state={
+                    num:this.props.num
+                }
+            }
+            change(arg){
+                if(this.props.count >= arg){
+                    this.setState({
+                        num : this.state.num *1  + arg
+                    })
+                    this.props.myClick(arg)
+                }else{
+                    alert('士兵数量不足')
+                }
+            }
+            render(){
+                return(
+                    <div>
+                        <p>将军{this.props.name}有士兵:{this.state.num}</p>
+                        <button onClick={this.change.bind(this,this.props.value)}>调兵</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Main></Main>,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>
