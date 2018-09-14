@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向数据绑定</title>
+    <!--只有表单元素可以双向数据绑定,类似于v-model-->
+</head>
+<body>
+    <div id="root">
+
+    </div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+        //react是单向的，state修改，界面修改，但界面修改不会更改state，通过event获取输入框中的值，用setState反向修改
+        class Show extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={
+                    msg:'123'
+                }
+            }
+            change(event){
+                this.setState({
+                    msg:event.target.value
+                })
+            }
+            render(){
+                return (
+                    <div>
+                        <h1>{this.state.msg}</h1>
+                        <input type="text" defaultValue={this.state.msg} onChange={this.change.bind(this)}/>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Show></Show>
+            ,
+            document.getElementById('root')
+        )
+    </script>
+
+</body>
+</html>
