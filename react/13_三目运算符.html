@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>样式</title>
+    <style>
+        .a{
+            background: cornflowerblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+    <!--react.development.js在react-dom.development.js之前引用-->
+    <script src="browser.min.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script type="text/babel">
+        //原来是写成class="a",className="a"
+        class Show extends React.Component{
+            constructor(props){
+                super(props)
+                this.state={
+                    isShow:true
+                }
+            }
+            change(){
+                this.setState({
+                    isShow : !this.state.isShow
+                })
+            }
+            render(){
+                //内联样式
+                let style = {
+                    background:'gray',  //对象形式
+                    color:'pink'
+                };
+                let ele = null; //注1：ele要先定义
+                if(this.state.isShow){
+                    ele = <h1 className="a">hello</h1>
+                }
+                return (
+                    <div>
+                        <button onClick={this.change.bind(this)}>click</button>
+                        {ele}
+                        <p style={style}>world</p>
+                    </div>
+                )
+            }
+        }
+
+
+
+
+        ReactDOM.render(
+            <Show></Show>
+            ,
+            document.getElementById('root')
+        )
+
+
+
+
+    </script>
+</body>
+</html>
