@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>循环</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+    <script src="browser.min.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script type="text/babel">
+        //原来是写成class="a",className="a"
+        class Show extends React.Component{
+            constructor(props){
+                super(props)
+                this.state={
+                    List:[
+                        {
+                            name:'手机',
+                            price:2000
+                        },
+                        {
+                            name:'电脑',
+                            price:5000
+                        },
+                        {
+                            name:'电视',
+                            price:7000
+                        },
+                    ]
+                }
+            }
+            render(){
+                return (
+                    <ul>
+                        {
+                            this.state.List.map((ele,index) =>{
+                                return <li>{ele.name} {ele.price}</li>
+                            })
+                        }
+                    </ul>
+                 )
+            }
+        }
+        ReactDOM.render(
+            <Show></Show>
+            ,
+            document.getElementById('root')
+        )
+
+
+
+
+    </script>
+</body>
+</html>
