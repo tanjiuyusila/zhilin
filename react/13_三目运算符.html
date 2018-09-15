@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>样式</title>
+    <title>样式:三目运算符</title>
     <style>
         .a{
             background: cornflowerblue;
@@ -37,14 +37,14 @@
                     background:'gray',  //对象形式
                     color:'pink'
                 };
-                let ele = null; //注1：ele要先定义
-                if(this.state.isShow){
-                    ele = <h1 className="a">hello</h1>
-                }
                 return (
                     <div>
                         <button onClick={this.change.bind(this)}>click</button>
-                        {ele}
+                        {
+                            this.state.isShow?
+                                <h1 className="a">hello</h1>
+                             :null
+                        }
                         <p style={style}>world</p>
                     </div>
                 )
