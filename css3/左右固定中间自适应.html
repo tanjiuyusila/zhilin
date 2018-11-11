@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左右固定中间自适应</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        /*法1 浮动*/
+        /*#div1{*/
+            /*background: #cccccc;*/
+            /*height: 200px;*/
+            /*width: 200px;*/
+            /*float:left;*/
+        /*}*/
+        /*#div2{*/
+            /*background:pink;*/
+            /*height: 200px;*/
+            /*margin:0 210px;*/
+        /*}*/
+        /*#div3{*/
+            /*background:#cccccc;*/
+            /*height: 200px;*/
+            /*width: 200px;*/
+            /*float:right;*/
+        /*}*/
+        /*法2 flex盒模型*/
+        body{
+            display: flex;
+        }
+        #div1{
+            height: 200px;
+            width: 200px;
+            background: #cccccc;
+        }
+        #div2{
+            background:pink;
+            flex:1;
+            margin:0 10px;
+        }
+        #div3{
+            height: 200px;
+            width: 200px;
+            background: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <!--法1-->
+    <!--<div id="div1"></div>-->
+    <!--顺序！！-->
+    <!--<div id="div3"></div>-->
+    <!--<div id="div2"></div>-->
+
+    <!--法2-->
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+</body>
+</html>
