@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM</title>
+</head>
+<body>
+    <label for="div1">
+        用户名：
+    </label>
+    <!--加上label标签，点文字的时候该id的输入框也可以获取焦点-->
+    <input id="div1" type="text">
+    <label for="pwd">
+        密码：
+    </label>
+    <input id="pwd" type="password">
+<script>
+    oDiv1 = document.getElementById('div1');   //若是对象，则写成oDiv;若是数组，则写成aDiv;
+    opwd= document.getElementById('pwd');
+    oDiv1.focus();
+    opwd.focus();
+
+
+</script>
+</body>
+</html>
