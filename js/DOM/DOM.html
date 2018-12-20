@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <!--文档对象模型-->
+</head>
+<body>
+    <!--一个网页是一个文档-->
+    <div id="div1">
+        <p>ppppppp</p>
+        <h1>hhhhhh</h1>
+    </div>
+    <script>
+        //document有三种方法获得页面任何元素：1、 document.getElementById('p1');2.document.getElementsByTagName();3、document.getElementsByName()
+        //2.document.getElementsByTagName():  //数组   byClassName兼容性不好
+        var oDiv = document.getElementById('div1');    //获取和设置元素属性
+        console.log(oDiv.getAttribute('id'));//或者oDiv.id 也可以，但是二者有区别，oDiv.id 只能修改默认属性，.setAttribute可以修改自定义属性。
+        oDiv.setAttribute('id','div2');
+        console.log(oDiv.getAttribute('id'));
+        // oDiv.onclick = function (e) {//e是形参；
+        //     e = e || window.event;//解决兼容性问题；
+            //事件三要素：1、事件源：事件来源（点谁身上触发，谁就是事件源）；2、事件执行函数：function； 3、事件本身（事件对象）：事件执行过程，即是e；
+            // console.log(1111);
+            //如果想要点击p显示111；点击h1显示222；运用tagname:
+
+            // console.log(e.target);     //e是对象，e.target：实际点击的p还是h1；
+            // console.log(e.currentTarget);    //显示事件绑谁身上了：div；
+            // console.log(this);    //显示事件绑谁身上了,类似于currentTarget；当前对象引用；
+            // console.log(e.target.tagName);
+            // if(e.target.tagName == 'P'){     //tagname必N须大写
+            //     console.log(111);
+            // }else{
+            //     console.log(222);
+            // }
+        // }
+            //this:
+            function fn() {
+                console.log(this);
+            };
+            fn()   //全局函数，this是window
+
+
+
+    </script>
+</body>
+</html>
