@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正方形</title>
+    <style>
+        *{
+            margin:0;
+        }
+        #div1{
+            width: 100%;
+            padding-top: 100%;
+            background: gray;
+        }
+        #div2{
+            /* 1vw:可视区域宽度的百分之一 */
+            /* vh：可视区域高度 */
+            width: 100vw;
+            height: 100vw;
+            background: pink;
+        }
+        #div3{
+            width: 100%;
+            background: greenyellow;
+            /* 加overflow: hidden，margin-top就好使了 */
+            overflow: hidden;
+        }
+        /* 伪元素*/
+        #div3:after{
+            content: '';
+            display:block ;
+            /*padding-top: 100%;*/
+            /* margin不好使，复原度没有margin-top */
+            margin-top: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+</body>
+</html>
