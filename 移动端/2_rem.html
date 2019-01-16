@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rem</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            font-size: 20px;
+        }
+        #div0{
+            font-size:20px;
+        }
+        #div2{
+            /*1em = 父元素font-size属性大小，默认是16px。浏览器最小是12px，小于12px的按照12来算。该属性可以继承，div1继承div0的 */
+            /*height: 2em;*/
+            /*width: 2em;*/
+            background: red;
+            /*1rem = 相对于html标签的font-size属性大小 */
+            height: 1rem;
+            width: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="div0">
+        <div id="div1">
+            <div id="div2">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.body.onresize = function () {
+            var a = document.documentElement.clientWidth;
+            document.documentElement.style.fontSize = a/5 + 'px';
+        }
+
+
+
+    </script>
+</body>
+</html>
