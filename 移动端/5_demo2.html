@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo2</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #header,#nav,#footer{
+            width: 960px;
+            height: 100px;
+            background: gray;
+            margin: 30px auto;
+            line-height: 100px;
+            text-align: center;
+        }
+        /*h2{*/
+            /*text-align: center;*/
+        /*}*/
+        #banner{
+            width: 960px;
+            margin:0 auto;
+            /*有背景要加高*/
+            /*height: 540px;*/
+            padding-top: 540px;
+            background : url('01.jpg');
+            /*图片太大，显示不全*/
+            /*background-size: 960px 540px;*/
+            /*辨析cover和contain*/
+            background-size: cover;
+        }
+        #container{
+            width: 960px;
+            margin:0 auto;
+            /*解决浮动没有高的问题，footer上去*/
+            overflow: hidden;
+        }
+        #left{
+            width: 600px;
+            height: 300px;
+            margin-right: 30px;
+            float:left;
+            background: gray;
+
+        }
+        #right{
+            width: 330px;
+            height: 300px;
+            float:left;
+            background: pink;
+
+        }
+        /*960和560有顺序关系960在上*/
+        @media (max-width: 960px) {
+            #footer,#header,#nav,#banner,#container{
+                width: 100%;
+            }
+            #banner{
+                /*height的高，是相对于父元素的高，padding的百分比，是相对于父元素的宽，这里宽一直都屏幕的宽*/
+                padding-top:  56%;
+            }
+            #left{
+                width: 60%;
+                margin-right: 5%;
+            }
+            #right{
+                width: 35%;
+            }
+        }
+        @media (max-width: 560px) {
+            #footer,#header,#nav,#banner,#container{
+                width: 100%;
+            }
+            #banner{
+                padding-top: 56%;
+            }
+            #left{
+                width:100% ;
+                /*height: 50%;*/
+                margin-right: 0;
+            }
+            #right{
+                width: 100%;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h2>页头</h2>
+    </div>
+    <div id="nav">
+        <h2>导航</h2>
+    </div>
+    <div id="banner">
+
+    </div>
+    <div id="container">
+        <div id="left">
+            dfdfdf df dfddddfdf  dfdfd fddddfdfdf df dfdddd fdfdf dfdfdd ddfdfd fdfd fddddfd fdf dfdfd ddd fdfdfdfdfd  dddfd fdfdfdfddd
+        </div>
+        <div id="right">
+            dfdfdf df dfddddfdf  dfdfd fddddfdfdf df dfdddd fdfdf dfdfdd ddfdfd fdfd fddddfd fdf dfdfd ddd fdfdfdfdfd  dddfd fdfdfdfddd
+        </div>
+    </div>
+    <div id="footer">
+        <h2>页尾</h2>
+    </div>
+</body>
+</html>
