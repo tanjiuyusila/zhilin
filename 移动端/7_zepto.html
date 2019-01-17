@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            /*写滑动要将该属性写成none*/
+            touch-action: none;
+        }
+        #div1{
+            height: 200px;
+            width: 200px;
+            background: #ff0000;
+        }
+    </style>
+<body>
+    <div id="div1"></div>
+    <script src="zepto.js"></script>
+    <script src="touch.js"></script>
+    <script>
+        // $('#div1').on('touchstart',function () {
+        //     console.log('touchstart')
+        // });
+        // $('#div1').on('touchend',function () {
+        //     console.log('touchend')
+        // });
+        // $('#div1').on('touchmove',function () {
+        //     console.log('touchmove')
+        // });
+        //zepto封装事件
+        // $('#div1').on('tap',function () {
+        //     console.log('tap')
+        // });
+        //click事件有300ms延迟，为了区别双击。
+        // $('#div1').on('click',function () {
+        //     console.log('cilck')
+        // });
+        //zepto封装
+        // $('#div1').swipeLeft(function () {
+        //     console.log('swipeLeft')
+        // });
+    </script>
+</body>
+</html>
