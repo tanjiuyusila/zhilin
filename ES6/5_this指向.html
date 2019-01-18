@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this指向</title>
+</head>
+<body>
+    <script>
+//改变this指向：
+//1.箭头函数;
+//2.fn.call();
+//3.apply
+//4.bind
+//
+//         function fn() {
+//             console.log(this)      //this指代window
+//         }
+//         fn();
+//
+        var o = {
+            name:'zs'
+        }
+        // fn.call(o);              //this指代对象
+        //
+        function fn(a,b) {
+            console.log(a,b)
+            console.log(this)
+        }
+        // fn.call(o,1,2);
+        // fn.apply(o,[1,2]);   //与call区别：参数以数组形式传
+        var a = fn.bind(o,1,2);       //区别：改变指向，但不会立即调用，返回一个函数
+        a();
+        a(1,2);  //bind传参第二种方式
+
+
+    </script>
+</body>
+</html>
