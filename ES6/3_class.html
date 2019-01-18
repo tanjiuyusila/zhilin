@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class</title>
+</head>
+<body>
+    <script>
+        //原生定义类：
+        // function User() {
+        //     this.name = 'zs';
+        //
+        // }
+        // User.prototype.say = function () {
+        //     console.log(this.name)
+        // }
+        // //继承：
+        // function Son(p) {
+        //     this.place = p;
+        // }
+        // Son.prototype = new User();  //  User的实例化对象
+        // var s = new Son('harbin');
+        // console.log(s.name);
+        // s.say();
+        // console.log(s.place);
+
+//ES6 class
+//         class User{
+//             constructor(n){  //构造函数   写属性值
+//                 // this.name = 'yzl';
+//                 this.name = n;
+//             }
+//             say(){
+//                 console.log(this.name);
+//                 console.log(this);  //this指向实例化对象
+//             }
+//         }
+//         var u = new User('zs');
+//         u.say();
+// //
+//     //ES6 继承
+//         class Son extends User{
+//             constructor(n,a){
+//                 super(n);   //必须有,继承父元素的构造函数,写下最上，否则会报错
+//                 this.age = a;
+//             }
+//             eat(){
+//                 console.log(this.age)
+//             }
+//         }
+//         var s = new Son('lisi',24);
+//         s.eat();
+//         s.say();   //undefined
+
+            // ES6静态static：使用情况：工具类：不用new再用。
+        class User{
+            constructor(n){
+                this.name = n;
+            }
+            static say(){       //一个类的函数，加上static属性值，属于类，延长生命周期，和类同级
+                // console.log(this.name);   //没有this.name，
+                console.log(this);   //没有this.name，this指向类
+                console.log('yzl');
+            }
+        }
+        // var u = new User('zs');
+        // u.say();   //不加static，函数属于他的实例化对象，加了static，会报错，u.say is not a function，即实例化对象以及原型下面没有该方法。
+        User.say();
+
+
+
+
+    </script>
+</body>
+</html>
