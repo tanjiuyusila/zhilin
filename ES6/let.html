@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let</title>
+</head>
+<body>
+<!--块级作用域例子   点击每个li，输出索引-->
+    <ul>
+        <li>001</li>
+        <li>002</li>
+        <li>003</li>
+        <li>004</li>
+    </ul>
+    <script>
+        // ECMAScript  javascript
+        // ES6 也叫ES2015  2015/6出，变动很大
+
+        //    let：定义变量的关键字;没有变量提升，不能重复声明（第二次声明用var也不行）；暂时性死区（临时失效区）
+        //         块级作用域
+
+
+//var let 辨析1：没有变量提升
+        // console.log(a);
+        // var a = 11;    //undefined;   变量提升（用var定义才有）：等于先定义，后赋值。var a;console.log(a);a = 11;
+
+        // console.log(a);
+        // let a = 11;              //报错，a is not defined;
+
+
+//var let辨析2：不能重复声明
+//         var a = 1;
+//         var a = 2;
+//         console.log(a);    //输出2；
+//         let a = 1;
+//         let a = 2;
+//         console.log(a);  //报错：a has already been declared;
+
+    //全局，局部
+        // function fn() {
+        //     var a = 1;
+        //     console.log(a)
+        // }
+        // fn();  //输出1
+        // console.log(a)  //未定义报错
+        // function fn() {
+        //     var a = b = 1;
+        //     console.log(a)
+        // }
+        // fn();  //输出1
+        // console.log(b)  //输出1：b是全局变量
+
+
+//var let辨析3：临时性死区
+//         var a = 2;
+//         function fn() {
+//             console.log(a);
+//             var a = 1;
+//         }
+//         fn();   //输出undefined   在fn作用域中，没找到赋值，用var定义，会将变量提升至当前作用域的上面。
+//         var a = 2;
+//         function fn() {
+//             console.log(a);
+//             let a = 1;
+//         }
+//         fn();     //没有变量提升，报错a is undefined;暂时性死区：任何在作用域中和let重名的变量都不好使
+
+
+//var let辨析4：块级作用域（ES6中加的，函数作用域是块级作用域的一种，任何有{}的都是块级作用域）
+//         for (var i=0;i<5;i++){
+//              console.log(i)    //输出0 1 2 3 4
+//          }
+//          console.log(i)  //输出5
+//         for (let i=0;i<5;i++){
+//             console.log(i)    //输出0 1 2 3 4
+//         }
+//         console.log(i)  //报错 a is not defined   ：js泄露问题。var只有全局，函数作用域，for里面定义的就是全局的
+
+        // {
+        //     let a = 1;
+        //     console.log(a);    //1
+        // }
+        // console.log(a);   //报错not defined   ;用var定义的话，处理函数都是全局作用域
+
+//闭包例子1：
+//         var aLi = document.getElementsByTagName("li");
+//         for(var i = 0;i<aLi.length;i++)
+//         aLi[i].onclick = function () {
+//             aLi[i].index = i
+//             console.log(this.index)    //直接输出i，会越界，输出4
+//         }
+//
+//         for(let i = 0;i<aLi.length;i++){
+//             aLi[i].onclick = function () {
+//                 console.log(i)    //输出索引
+//             }      //两个作用域套在一起，形成闭包
+//         }
+
+//闭包例子1.1
+        var aLi = document.getElementsByTagName("li");
+        for(var i = 0;i<aLi.length;i++){
+            (function (index) {   //i传给了index
+                aLi[index].onclick = function () {
+                    console.log(index)//两个函数形成的闭包
+                }
+            })(i);  //这个i在for循环作用域里，能找到循环用的i，
+        }
+
+        //闭包会导致：内存泄漏：内存占完，不被释放——严重会导致内存溢出（内存满了）
+        //闭包：解决外部作用域调内部作用域变量的问题：一个外部函数，里面声明了一个内部函数，内部函数里面调用了外部函数
+        //的局部变量，这个时候局部变量不会释放
+
+//    闭包例子2
+//         function f1() {
+//             var n = 100;
+//             var f2 = function () {
+//                 console.log(n);
+//             }
+//             return f2;//返回值是函数
+//         }
+//         var result = f1();//即 var result =  function () {
+//                                           // console.log(n);
+//                                          // }
+//         result();  //输出100；正常函数执行完之后，所有局部变量被释放，但调用f2还能显示100，因为里面还有函数等待引用，所以变量不会释放
+
+
+
+//函数立即调用：
+        //理解：
+        // var f1 = function (index) {
+        //     console.log(111111)
+        // };
+        // f1(i);
+        // (function (index) {
+        //     console.log(111111)
+        // })(i);  //只能调用一次，没有函数名。使用：见上面闭包例子1.1
+
+
+    </script>
+
+</body>
+</html>
