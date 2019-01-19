@@ -6,7 +6,7 @@
 </head>
 <body>
     <script>
-        //原生定义类：
+//原生定义类：
         // function User() {
         //     this.name = 'zs';
         //
@@ -23,6 +23,23 @@
         // console.log(s.name);
         // s.say();
         // console.log(s.place);
+
+
+
+        // 子类中 通过父类.call(this) 继承属性
+        // function Coader(name,age){
+        //     // console.log(this);    //window
+        //     Person.call(this,name,age);
+        //     this.shirt = "格子";
+        // }
+        // 通过子类.prototype = 父类的实例化对象 继承方法
+        // Coader.prototype = new Person();
+        // Coader.prototype.constructor = Coader;
+        //
+        // console.log(Coader.prototype.constructor);
+        //
+        // var c1 = new Coader('静静',18);
+        // c1.say();
 
 //ES6 class
 //         class User{
