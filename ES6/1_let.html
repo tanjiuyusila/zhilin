@@ -83,12 +83,12 @@
         // console.log(a);   //报错not defined   ;用var定义的话，处理函数都是全局作用域
 
 //闭包例子1：
-//         var aLi = document.getElementsByTagName("li");
-//         for(var i = 0;i<aLi.length;i++)
-//         aLi[i].onclick = function () {
-//             aLi[i].index = i
-//             console.log(this.index)    //直接输出i，会越界，输出4
-//         }
+        var aLi = document.getElementsByTagName("li");
+        for(var i = 0;i<aLi.length;i++)
+        aLi[i].onclick = function () {
+            aLi[i].index = i
+            console.log(this.index)    //直接输出i，会越界，输出4
+        }
 //
 //         for(let i = 0;i<aLi.length;i++){
 //             aLi[i].onclick = function () {
@@ -97,14 +97,14 @@
 //         }
 
 //闭包例子1.1
-        var aLi = document.getElementsByTagName("li");
-        for(var i = 0;i<aLi.length;i++){
-            (function (index) {   //i传给了index
-                aLi[index].onclick = function () {
-                    console.log(index)//两个函数形成的闭包
-                }
-            })(i);  //这个i在for循环作用域里，能找到循环用的i，
-        }
+//         var aLi = document.getElementsByTagName("li");
+//         for(var i = 0;i<aLi.length;i++){
+//             (function (index) {   //i传给了index
+//                 aLi[index].onclick = function () {
+//                     console.log(index)//两个函数形成的闭包
+//                 }
+//             })(i);  //这个i在for循环作用域里，能找到循环用的i，
+//         }
 
         //闭包会导致：内存泄漏：内存占完，不被释放——严重会导致内存溢出（内存满了）
         //闭包：解决外部作用域调内部作用域变量的问题：一个外部函数，里面声明了一个内部函数，内部函数里面调用了外部函数
