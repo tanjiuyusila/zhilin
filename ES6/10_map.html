@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map</title>
+</head>
+<body>
+    <script>
+        //map类似于对象,键也不能重复。区别：map的键可以放任何类型（包括undefined，null，NaN），而对象的键只有字符串型
+        var m = new Map();
+        //设置值
+        m.set('a',123);
+        m.set(1,true);
+        m.set(true,'xxx');
+        console.log(m);
+        console.log(m.size)   //获取长度
+        //获取m中的一个，获取值
+        console.log(m.get('a'));
+        console.log(m.get(1));
+        console.log(m.get('1'));//undefined
+        //判断是否有
+        console.log(m.has('a'));
+        //删除，清空
+        m.delete('a');
+        m.clear();
+
+
+
+    </script>
+
+</body>
+</html>
