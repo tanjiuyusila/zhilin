@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set</title>
+</head>
+<body>
+    <script>
+        //     let a = [1,2,3,4,5,5,5,6,6];
+        //     let b = new Set(a);    //去重，输出一个类数组  b是new出来的，是一个对象，用 b.xx 操作
+        //     console.log(b);
+        //     console.log(a);
+        //     console.log([...b]);   //类数组转换成数组
+
+//set操作方法：
+            //添加，删除，清空
+        // var set = new Set();
+        // set.add('123');
+        // set.add(123);
+        // set.add(true)
+        // console.log(set);
+        // console.log(set.length);//undefined，不能获取长度
+        // console.log(set.size);//获取长度
+        // // set.delete(123);
+        // // set.clear();
+        // set.add(123); //不能存入重复值；上面的去重
+            //遍历：
+        // for(var k of set){
+        //     console.log(k);
+        // }
+        // var keys = set.keys();
+        // console.log(keys);   //本身没有键，只有值，键值相同
+        //
+        // var  values = set.values();
+        // console.log(values);
+        //
+        // var entries = set.entries();
+        // for(var key of entries ){
+        //     console.log(key);        //循环出键值对
+        // }
+
+//例题 ：数组去重
+
+        var arr = [1,2,3,4,5,5,5,6,6];
+
+    //法1：for循环：用indexOf来判断是否存在该数，不存在返回-1，有的画返回下标
+        // var newArr = [];
+        // for(var i = 0;i < arr.length;i++){
+        //     if(newArr.indexOf(arr[i]) == -1 )
+        //     newArr.push(arr[i])
+        // }
+        // console.log(newArr);
+
+
+        //法1.2
+        // for(var val of arr){
+        //     if(!newArr.includes(val)){
+        //         newArr.push(val);
+        //     }
+        // }
+        // console.log(newArr);
+
+    //法2：利用对象中一个属性只能写一次，
+
+        // var obj = {};
+        //              //动态属性：
+        //              //    var a = 'name';
+        //              //    obj.a = 'zs';
+        //              //    console.log(obj);
+        //              //    obj[a] = 'zs';
+        //              //    console.log(obj)
+        //
+        // var newArr = [];
+        // for(var i=0;i<arr.length;i++){
+        //                     /*
+        //                     arr[i]  //每个数
+        //                     obj[arr[i]] = true;       //将数组中的每个数值作为对象名，用动态属性。动态属性用中括号实现
+        //                     */
+        //     if(!obj[arr[i]]){                       //取出数组越界值，对象里没定义的属性，都是undefined，undefined在布尔值中表示成 false
+        //         newArr.push(arr[i]);
+        //         obj[arr[i]] = true;       //给键赋值
+        //     }
+        // }
+        // console.log(newArr);
+
+     // //法2.1
+     //    for(var i=0;i<arr.length;i++) {
+     //        obj[arr[i]] = true;
+     //    }
+     //    for (var key in obj) {
+     //        newArr.push(key)
+     //    }
+     //    console.log(newArr);
+
+
+
+//法3：set
+//         var nArr = new Set(arr);
+//         console.log(nArr);
+//         //法3.1
+//         newArr = [...nArr];
+//         console.log(newArr);
+//         //法3.2
+//         console.log(Array.from(nArr));
+
+
+
+
+
+    </script>
+</body>
+</html>
