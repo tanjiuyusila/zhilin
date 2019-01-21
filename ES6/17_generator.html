@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generator</title>
+</head>
+<body>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        /*  1. 异步编程解决方案
+            2. 形式上，Generator函数是一个普通的函数，但有两个特征：
+            （1）.function关键字与函数名之间有一个星号
+            （2）.函数体内部使用yield（产出）表达式，定义不同的内部状态
+            3. 函数返回遍历器对象（即指针），只能电泳next方法才能遍历下一个内部状态，
+            所以提供了一种可以暂停执行的函数，yield表达式就是暂停的标志
+            4. yield表达式本身没有返回值，或者说过总是返回undefined。next方法可以带一个参数，
+            该参数就被当作上一个yeild表达式的返回值。
+         */
+
+        // function* fn() {
+        //     yield 'hello';
+        //     yield 'world';
+        //     yield 'Generator';
+        // }
+        // console.log(fn());  //指针
+        // var gen =fn();
+        // console.log(gen.next());  //hello false
+        // console.log(gen.next());  //world false
+        // console.log(gen.next());  //Generator false
+        // console.log(gen.next());  //undefined true
+//加返回值
+        // function* fn() {
+        //     yield 'hello';
+        //     yield 'world';
+        //     yield 'Generator';
+        //     return 0;
+        // }
+        // var gen =fn();
+        // console.log(gen.next());  //hello false
+        // console.log(gen.next());  //world false
+        // console.log(gen.next());  //Generator false
+        // console.log(gen.next());  //0,true
+
+//例子1
+//         function* fn() {
+//             var x = 2 * ( yield 3+5 );
+//             var y = yield x/2;
+//             return y;
+//         }
+//         var gen = fn();
+//         console.log(gen.next());    //8 false
+//         // console.log(gen.next());    //NaN false  第一个yeild（3+5）返回值8，只会返回给gen，不会继续参与运算；
+//         console.log(gen.next(2));    //执行第一个和第三个console，8 false：这次传进来的8，代替yeild（3+5）参加运算；该处可以传任何值进去进行运算
+//         console.log(gen.next());   //undefined true
+//
+//         //因此，为了拿到返回值，如下写
+//         function* fn() {
+//             var x = 2 * ( yield 3+5 );
+//             var y = yield x/2;
+//             return y;
+//         }
+//         var gen = fn();
+//         var a = gen.next();   //a是一个对象
+//         var b = gen.next(a.value);
+//         var c = gen.next(b.value);
+//         console.log(a,b,c);
+
+
+
+//用法：
+//         function request(url) {
+//             $.get(url,res=>{
+//                 console.log(res);   //异步：request函数没有返回值，先返回undefined，然后执行 console.log(a);
+//             })
+//         }
+//         function* fn() {
+//             yield request('a.json');
+//             yield request('b.json');
+//             yield request('c.json');
+//             return 0;
+//         }
+//         var g = fn();
+//         var a = g.next();           //{a: "我是一个a页面", teacher: "zs"}
+//         var b = g.next();            //{b: "我是一个b页面", age: 12}
+//         var c = g.next();           //{c: "我是一个c页面"}
+//         var d = g.next();           //不输出
+//         console.log(a);             //{value: undefined, done: false}
+//         console.log(b);             //{value: undefined, done: false}
+//         console.log(c);             //{value: undefined, done: false}
+//         console.log(d);             //0 true
+//         //由于是异步操作，先输出value: undefined, done: false}，再输出a: "我是一个a页面", teacher: "zs"}等
+
+
+        function request(url) {
+            $.get(url,res=>{
+                console.log(res);//3.输出res
+                console.log(g.next());
+                // g.next();     //4.再次调用next。
+            })
+        }
+        function* fn() {
+            yield request('a.json');   //2.调用函数
+            yield request('b.json');   //5.调用函数，
+            yield request('c.json');   //6.调用函数
+            return 0;
+        }
+        var g = fn();
+        var a = g.next();   //1. 调用next方法
+
+        //顺序：1 -> 2 -> 3 -> 4 -> 5 -> 3 -> 4 -> 6 -> 3 -> 4
+
+    </script>
+</body>
+</html>
