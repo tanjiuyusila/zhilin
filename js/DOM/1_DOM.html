@@ -13,7 +13,7 @@
     </div>
     <script>
         //document有三种方法获得页面任何元素：1、 document.getElementById('p1');2.document.getElementsByTagName();3、document.getElementsByName()
-        //2.document.getElementsByTagName():  //数组   byClassName兼容性不好
+        //2.document.getElementsByTagName():  //节点列表（数组）   byClassName兼容性不好
         var oDiv = document.getElementById('div1');    //获取和设置元素属性
         console.log(oDiv.getAttribute('id'));//或者oDiv.id 也可以，但是二者有区别，oDiv.id 只能修改默认属性，.setAttribute可以修改自定义属性。
         oDiv.setAttribute('id','div2');
@@ -28,7 +28,7 @@
             // console.log(e.currentTarget);    //显示事件绑谁身上了：div；
             // console.log(this);    //显示事件绑谁身上了,类似于currentTarget；当前对象引用；
             // console.log(e.target.tagName);
-            // if(e.target.tagName == 'P'){     //tagname必N须大写
+            // if(e.target.tagName == 'P'){     //tagname必须大写
             //     console.log(111);
             // }else{
             //     console.log(222);
