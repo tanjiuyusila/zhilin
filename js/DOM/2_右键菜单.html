@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>右键菜单</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style:none;
+        }
+
+        #menu{
+            width: 120px;
+            text-align: center;
+            border:1px solid #000;
+            display:none;
+            position:absolute;
+            top:0;
+            left:0;
+            /*相对与body*/
+        }
+        #menu li{
+            height: 30px;
+            border-bottom:1px solid #ccc;
+            line-height: 30px;
+        }
+        #menu li:last-child{
+            /*对最后一个特殊处理*/
+            boder-bottom:0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul id="menu">
+            <li>打开</li>
+            <li>删除</li>
+            <li>复制</li>
+            <li>下载</li>
+            <li>属性</li>
+        </ul>
+    </div>
+    <script>
+        var oUl = document.getElementById('menu');
+        document.oncontextmenu = function (e) {   //右键单击；e代表右键单击事件
+            oUl.style.display = 'block';
+
+            //默认有菜单，要先取消默认：
+            // e.returnValue = false; //属性  IE
+            // e.preventDefault();   //方法  标准浏览器
+            var x = e.clientX;   //返回鼠标指针水平座标
+            var y = e.clientY;
+
+            //加判断，不要让菜单出现在屏幕之外：
+
+            var dW = document.documentElement.offsetWidth;  //屏幕宽
+            var mW = oUl.offsetWidth;  //菜单宽
+            if( x > dW - mW ){
+                oUl.style.left = (x - mW) + 'px' ;
+                oUl.style.top = y + 'px';
+            }else{
+                oUl.style.top = y +'px';
+                oUl.style.left = x + 'px';
+            }
+            return false;   //阻止浏览器默认行为
+
+        };
+
+        var aLi = document.getElementsByTagName('li');
+        for(i=0;i<aLi.length;i++){
+            aLi[i].onmouseover = function (e) {
+                // aLi[i].style.background = '#ccc';  //报错，aLi undefined；
+                // console.log(i)    //i=5,数组越界
+                this.style.background = '#ccc';   //this：当前对象引用。
+            };
+            aLi[i].onmouseout = function () {
+                this.style.background = '';   //空就是默认色
+            }
+            aLi[i].onclick = function () {
+                alert(this.innerHTML);
+            }
+
+        };
+        document.onclick = function (e) {
+            oUl.style.display = 'none';
+        };
+
+
+//拓展：
+        // 如果想找menu下面的li，可以写成:
+        // oUl.getElementsByTagName('li')
+        // getElementById() 只存在于document，其他的不可以；
+
+
+
+
+
+        
+    </script>
+
+</body>
+</html>
