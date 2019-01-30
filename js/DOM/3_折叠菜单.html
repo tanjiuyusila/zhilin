@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>折叠菜单</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+        }
+        #container{
+            width: 200px;
+            margin: 100px auto;
+            border:1px solid #000000;
+        }
+        #menu>li{
+            text-align: center;
+        }
+        a{
+            display: block;
+            background: #000000;
+            color:#ffffff;
+            text-align: center;
+        }
+        .sub_menu{
+            background: #ccc;
+            display: none;
+        }
+        #container.sub_menu li{
+            text-align: center;
+            height: 22px;
+            line-height: 22px;
+        }
+        .active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <ul id="container">
+        <li>
+            <a href="">管理区</a>
+        <ul class="sub_menu">
+            <li>001</li>
+            <li>002</li>
+            <li>003</li>
+        </ul>
+        </li>
+
+        <li>
+            <a href="">交流区</a>
+        <ul class="sub_menu">
+            <li>001</li>
+            <li>002</li>
+            <li>003</li>
+        </ul>
+
+        </li>
+    </ul>
+    <script>
+        var aA = document.getElementsByTagName('a');
+        var oUl = document.getElementById('container');
+        var aUl = oUl.getElementsByTagName('ul');
+        for(var i=0;i<aA.length;i++){
+            aA[i].index = i;
+            aA[i].onclick = function () {
+                // if(getStyle(aUl[this.index],'display') == "none"){
+                //     aUl[this.index].style.display = 'block'
+                // }else{
+                //     aUl[this.index].style.display = 'none'
+                // }
+                if(getStyle(aUl[this.index],'display') == "block"){
+                    aUl[this.index].style.display = 'none'
+                }else{
+                    aUl[this.index].style.display = 'block'
+                }
+                return false;
+            }
+        }
+
+        function getStyle(elem,prop){
+            if(elem.currentStyle){
+                return elem.currentStyle[prop];
+            }else{
+                return getComputedStyle(elem,false)[prop];
+            }
+        }
+        
+    </script>
+</body>
+</html>
