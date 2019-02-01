@@ -20,15 +20,16 @@
         #container .img img{
             /*不写top，left等，默认相对容器*/
             position:absolute;
-            display: none;
+            /*display: none;*/
         }
-        #container .img .selected{
-            display: block;
-        }
+        /*#container .img .selected{*/
+            /*display: block;*/
+        /*}*/
         #container .nav{
             position:absolute;
             right:10px;
             bottom:10px;
+            z-index: 9999999;
         }
         #container .nav li.selected{
             background: orange;
@@ -47,7 +48,8 @@
         #container .arrows{
             position: absolute;
             left:10px;
-            bottom:10px
+            bottom:10px;
+            z-index: 9999999;
         }
     </style>
 </head>
@@ -70,6 +72,7 @@
             <span id="next">&gt;</span>
         </div>
     </div>
+    <script src="jslib.js"></script>
     <script>
         var aLi = document.getElementsByTagName('li');
         var aImg = document.getElementsByTagName('img');
@@ -77,6 +80,10 @@
         var oNext = document.getElementById('next');
         var oContainer = document.getElementById('container');
         var nowIndex = 0;
+        var zIndex = 4;
+        for(var i=0;i<aImg.length;i++){ //设置初始zIndex值，使第一张显示
+            aImg[i].style.zIndex = aImg.length - i;
+        }
         //利用index,双重for循环，简单，但不够好；可以记录上一个划入的索引，只清除它的样式
         for(var i=0;i<aLi.length;i++){
             aLi[i].index = i;
@@ -105,42 +112,27 @@
         function changeImg(index) {
             for(var i=0;i<aLi.length;i++){
                 aLi[i].className = '';
-                aImg[i].className = '';
             }
             aLi[index].className = 'selected';
-            aImg[index].className = 'selected';
+            aImg[index].style.zIndex = ++zIndex;
+            aImg[index].style.opacity = 0;  //让显示的图片透明度从0到1；引用一个js插件
+            // animate(aImg[index],{opacity:100},function () {
+            //     console.log(111);    //回调：执行完透明度之后，执行该函数
+            // });
+            animate(aImg[index],{opacity:100});
         }
-        // var timer =  setInterval(function () {
-        //     // nowIndex ++;
-        //     // if(nowIndex == aLi.length){
-        //     //     nowIndex = 0;
-        //     // }
-        //     // changeImg(nowIndex)
-        //     //简写
-        //     oNext.onclick();
-        // }
         play();
         oContainer.onmouseover = function () {
             clearInterval(timer);  //将自动轮播写成函数之后，无法划入停止，报错timer没定义，
-            // 写在函数里，局部变量：解决方法1：把var去掉
         };
         oContainer.onmouseout = function () {
             play()
         };
         function play() {
              timer =  setInterval(function () {
-                // nowIndex ++;
-                // if(nowIndex == aLi.length){
-                //     nowIndex = 0;
-                // }
-                // changeImg(nowIndex)
-            //简写
                 oNext.onclick();
             },2000);
         }
-
-
-        
 
     </script>
 </body>

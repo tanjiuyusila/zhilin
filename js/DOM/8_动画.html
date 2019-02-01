@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: #f00;
+            opacity:1;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+
+    </div>
+    <script>
+        var oDiv = document.getElementById('div1');
+//随时间，透明度变化。
+//         oDiv.style.opacity;  //只能获取到内联样式，不能拿到透明度
+//         // getComputedStyle(oDiv,false).opacity;
+//         // console.log(getComputedStyle(oDiv,false).opacity);
+//         setInterval(function () {
+//             var o = getComputedStyle(oDiv,false).opacity;
+//             var w = getComputedStyle(oDiv,false).width;
+//             if(o<0.1){
+//                 oDiv.style.opacity = 0;
+//             }else{
+//                 oDiv.style.opacity = o * 0.8;
+//             }
+//         },50)
+//宽度变化
+        var timer =  setInterval(function () {
+            var w = getComputedStyle(oDiv,false).width;
+            w = parseInt(w) +10;
+            if(w > 500){
+                oDiv.style.width = '500px';
+                clearInterval(timer);
+            }else{
+                oDiv.style.width = w +'px';
+            }
+
+        },50)
+    </script>
+</body>
+</html>
