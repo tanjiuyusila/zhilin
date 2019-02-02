@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #container{
+            width: 520px;
+            height: 280px;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #container .img{
+            width: 2080px;
+            position: absolute;
+            left:0;
+        }
+        #container .img img{
+            float:left;
+        }
+        #container .nav{
+            position:absolute;
+            right:10px;
+            bottom:10px;
+        }
+        #container .nav li.selected{
+            background: orange;
+        }
+        #container .nav li,.arrows span{
+            float:left;
+            height: 20px;
+            width: 20px;
+            background: #000;
+            color: #fff;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+        }
+        #container .arrows{
+            position: absolute;
+            left:10px;
+            bottom:10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="img" id="img-container">
+            <!--图片标签有空格，回车，会导致图片有间隔-->
+            <img src="img/1.jpg" alt="" class="selected">
+            <img src="img/2.jpg" alt="">
+            <img src="img/3.jpg" alt="">
+            <img src="img/4.jpg" alt="">
+        </div>
+        <ul class="nav">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div class="arrows">
+            <span id="prev">&lt;</span>
+            <span id="next">&gt;</span>
+        </div>
+    </div>
+    <script src="jslib.js"></script>
+    <script>
+        var aLi = document.getElementsByTagName('li');
+        var aImg = document.getElementsByTagName('img');
+        var oPrev = document.getElementById('prev');
+        var oNext = document.getElementById('next');
+        var oImgCon = document.getElementById('img-container');
+        var oContainer = document.getElementById('container');
+        var nowIndex = 0;
+
+        for(var i=0;i<aImg.length;i++){
+            aImg[i].style.zIndex = aImg.length - i;
+        }
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function () {
+                changeImg(this.index);
+                nowIndex = this.index;
+            };
+            aLi[i].onselectedstart = function () {
+                return false;
+            }
+        }
+        oNext.onclick = function () {
+            nowIndex ++;
+            if(nowIndex == aLi.length){
+                nowIndex = 0;
+            }
+            changeImg(nowIndex)
+        };
+        oPrev.onclick = function () {
+            nowIndex --;
+            if(nowIndex == -1){
+                nowIndex = aLi.length -1;
+            }
+            changeImg(nowIndex,)
+        };
+        function changeImg(index) {
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className = '';
+            }
+            aLi[index].className = 'selected';
+            //left不好使：div没定位；
+            // oImgCon.style.left = - aImg[index].offsetWidth * index +'px';
+            animate(oImgCon,{left:- aImg[index].offsetWidth * index})
+        }
+        play();
+        oContainer.onmouseover = function () {
+            clearInterval(timer);
+        };
+        oContainer.onmouseout = function () {
+            play()
+        };
+        function play() {
+             timer =  setInterval(function () {
+                oNext.onclick();
+            },2000);
+        }
+
+    </script>
+</body>
+</html>
