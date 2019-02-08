@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝滚动</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #container{
+            width: 320px;
+            height: 200px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #container .ul1{
+            height: 100px;
+            width: 440px;
+            position: absolute;
+            left:0;
+        }
+        #container .ul1 li{
+            list-style: none;
+            height: 100px;
+            width: 100px;
+            background: #000000;
+            color:white;
+            text-align:center;
+            line-height: 100px;
+            float:left;
+            margin-right: 10px;
+            font-size: 40px;
+        }
+        #container .div1{
+            position: absolute;
+            bottom: 20px;
+            /*相对于父元素的一半*/
+            left:50%;
+            /*相对于自己的一半*/
+            transform: translate(-50%);
+        }
+        #container .div1 span{
+            background: #ccc;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul class="ul1">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div class="div1">
+            <span id="left">向左</span>
+            <span id="right">向右</span>
+        </div>
+    </div>
+    <script>
+        var aUl = document.getElementsByClassName('ul1');
+        aUl[0].innerHTML += aUl[0].innerHTML;
+        //aUl[0].style.width 获取内联样式，不包括padding，border；
+        //offsetwidth包括padding，border;
+        aUl[0].style.width = 2 * aUl[0].offsetWidth + 'px';
+        var oLeft = document.getElementById('left');
+        var oRight = document.getElementById('right');
+        var speed = -2;
+        setInterval(function () {
+            // var ileft = getComputedStyle(aUl[0],false).left;
+            var ileft = aUl[0].offsetLeft; //获取元素到最近定位的父元素边界的距离，包括 margin（物理距离）;
+            aUl[0].style.left = ileft + speed +'px'
+            //不好使，因为left默认是auto，需要定位：.ul1加上以下两行
+            //position: absolute;
+            //left:0;
+
+            // 计算ul和container的距离
+            // offsetWidth 只能取值，不能赋值；
+
+            //左滑
+            if(ileft < -aUl[0].offsetWidth/2){
+                aUl[0].style.left = 0;
+            }
+        //    右滑
+            if(ileft > 0){
+                aUl[0].style.left = - aUl[0].offsetWidth/2 +'px';
+            }
+        },10);
+        // oLeft.onmouseover = function () {
+        //     speed = -2;
+        // };
+        // oRight.onmouseover = function () {
+        //     speed = 2;
+        // };
+        oLeft.onmouseover = oRight.onmouseover = function () {
+            if(this == oLeft){
+                speed = -2;
+            }else{
+                speed = 2;
+            }
+        };
+    </script>
+</body>
+</html>
