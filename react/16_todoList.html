@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todoList</title>
+    <style>
+        .red{
+            background: #ff0000;
+        }
+    </style>
+</head>
+<body>
+<!--index,key问题-->
+<div id="root"></div>
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="browser.min.js"></script>
+<script type="text/babel">
+    class Main extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {
+                counts:0,
+                todos:[
+                    {
+                        name:'吃饭',
+                        isActive:false,
+                        id:1,
+                    },
+                    {
+                        name:'睡觉',
+                        isActive:false,
+                        id:2,
+                    },
+                    {
+                        name:'打豆豆',
+                        isActive:false,
+                        id:3,
+                    }
+                ],
+                showTodos:[
+                    {
+                        name:'吃饭',
+                        isActive:false,
+                        id:1,
+                    },
+                    {
+                        name:'睡觉',
+                        isActive:false,
+                        id:2,
+                    },
+                    {
+                        name:'打豆豆',
+                        isActive:false,
+                        id:3,
+                    }
+                ],
+            };
+            this.addHandler = this.addHandler.bind(this);
+            this.changeColor = this.changeColor.bind(this);
+            this.deleteArr = this.deleteArr.bind(this);
+            this.filter = this.filter.bind(this);
+        }
+        addHandler(val){
+            let todos = [...this.state.todos];
+            todos.push({name:val,isActive:false,id:(new Date()).getTime()});
+            // console.log(todos);
+            this.setState({
+                todos,
+                showTodos : todos
+            })
+        }
+        changeColor(id){
+            // console.log(index);
+            let index = this.state.todos.findIndex(function (obj,index) {
+                return obj.id == id
+            });
+            let todos = [...this.state.todos];
+            todos[index].isActive = !todos[index].isActive
+            this.setState({
+                todos,
+                showTodos : todos
+            })
+        }
+        deleteArr(id){
+            let todos = this.state.todos.filter((obj)=>{
+                return obj.id != id
+            });
+            this.setState({
+                todos,
+                showTodos : todos
+            })
+        }
+        filter(val){
+            let showTodos = this.state.todos.filter((obj)=>{
+                return obj.name.includes(val);
+            });
+            // console.log(newTodos);
+            this.setState({
+                showTodos
+            });
+
+        }
+        render(){
+            return(
+                <div>
+                    <h1>todoList</h1>
+                    <Search filter={this.filter}></Search>
+                    <Add addHandler={this.addHandler}></Add>
+                    <List todos={this.state.showTodos}
+                          changeColor={this.changeColor}
+                          deleteArr={this.deleteArr}
+                          generateID={this.generateID}
+                    ></List>
+
+                </div>
+            )
+        }
+    }
+    class Search extends React.Component{
+        constructor(props){
+            super(props)
+        }
+        render(){
+            return(
+                <div>
+                    <span>搜索：</span>
+                    <input type="text" onChange={
+                        (e) => {
+                            this.props.filter(e.target.value);
+                            e.target.value = '';
+                        }
+                    }/>
+                </div>
+            )
+        }
+    }
+    class Add extends React.Component{
+        constructor(props){
+            super(props);
+            this.add = this.add.bind(this)
+        }
+        add(){
+            this.props.addHandler(this.myInput.value);
+            this.myInput.value = '';
+
+        }
+        render(){
+            return(
+                <div>
+                    <span>添加：</span>
+                    <input type="text" ref={input => {this.myInput = input}}/>
+                    <button onClick={this.add}>添加</button>
+                </div>
+            )
+        }
+    }
+    class List extends React.Component{
+        constructor(props){
+            super(props)
+        }
+        render(){
+            return(
+                <ul>
+                    {
+                        this.props.todos.map((task,index) =>{
+                            return (
+
+                                <li key={task.id} className={task.isActive?'red':''}>
+                                    <input type="checkbox" defaultChecked={task.isActive}
+                                           onClick={() => {
+                                               this.props.changeColor(task.id)
+                                           }}
+                                    />
+                                    {task.name}
+                                    <button onClick={() => {
+                                        this.props.deleteArr(task.id)
+                                    }}>删除</button>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            )
+        }
+    }
+    ReactDOM.render(
+        <Main></Main>
+        ,
+        document.getElementById('root')
+    )
+</script>
+
+</body>
+</html>
