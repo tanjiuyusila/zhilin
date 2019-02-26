@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery对象</title>
+</head>
+<body>
+    <div id="div1">
+        div1
+    </div>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        // $();  //类似于之前的函数：function fn(){};fn();将fn换成$.
+        //一般定义函数不用$,为了防止冲突，使用$;
+        //和css选择器一样，可以使用#取到id
+        console.log($('#div1'));
+        $('#div1').css('background','red');   //jquery自带方法    用jquery选出来的是jquery对象，用js选出来的是js原生对象。
+        var oDiv = document.getElementById('div1');
+        console.log(oDiv);
+        // oDiv.css('background','red')    //报错 oDiv.css is not a function
+
+        //jquery对象和原生对象转换：
+        //jquery -> 成原生：$obj.get(0) 或者 $obj[0]
+        console.log($('#div1').get(0));
+        //原生 -> jquery    $(obj)
+        console.log($(oDiv));
+
+        //在html加载完（包括图片等资源）再执行，只能写一个，会覆盖
+        // window.onload() = function () {
+        //
+        // }
+        //文档就绪函数;类似于window.onload，但是是html结构（标签，可以不包括资源）加载完就执行，可以写多个，
+        $(document).ready(function () {
+
+        })
+        //文档就绪函数简写
+        $(function () {
+            
+        })
+
+
+    </script>
+</body>
+</html>
