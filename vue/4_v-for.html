@@ -7,7 +7,8 @@
 <body>
 <div id="app">
     <ul>
-        <li v-for="val in arr">      <!--v-for 出现在那个标签里，那个标签就会循环多次，不写就不能用index，写{{$index}}会报错-->
+        <li v-for="val in arr">
+            <!--v-for 出现在那个标签里，那个标签就会循环多次，不写就不能用index，写{{$index}}会报错-->
             {{val}} valvalval
         </li>
         <li v-for="(xx,index) in arr">       <!--val,i必须写，不能缺省，但可以不用-->
@@ -17,10 +18,15 @@
             {{i}}
             {{msg}}
         </li>
+        <li v-for="val in Fam">
+            {{val}}
+        </li>
         <li v-for="(val,index) in Fam">  <!--往数组里加对象：vm.Fam.push({name:'maoni',age:2})-->
-            家人姓名是:{{val.name}} 年龄是：{{val.age}} 索引是：{{index}}      <!--{{里可以写表达式，拼接字符串}}-->
+            家人姓名是:{{val.name}} 年龄是：{{val.age}} 索引是：{{index}}
+            <!--{{里可以写表达式，拼接字符串}}-->
         </li>
         <li v-for="val in obj">
+            <!--读出来的是值 1，2，3-->
             {{val}}
         </li>
         <li v-for="(val,key,index) in obj">

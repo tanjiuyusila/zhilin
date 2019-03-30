@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <title>vue基础语法</title>
     <!--Vue大部分只操作data数据-->
+    <!--不支持IE8以下版本，使用了IE8以下无法模拟的 ECMAScript5 特性（双向绑定源码）-->
+    <!--vue指令写在标签内，和属性在同一位置上-->
 </head>
 <body>
     <div id="app">
-        {{msg}}    //大括号比较常用。
-        <!--由于电脑慢，网页上会有可能先出现{{msg}}再显示HELLO WORLD，为解决，在标签内部，写指令：v-text=“msg”-->
+        {{msg}}
+        <!--大括号比较常用。-->
+        <!--由于电脑慢，网页上会有可能先出现{{msg}}再显示HELLO WORLD，为解决该问题，
+        在标签内部，写指令：v-text=“msg”-->
     </div>
     <script src="vue.js"></script>
     <script>
@@ -18,9 +22,17 @@
                 msg:'hello world'           //    对象里放键值对，
             }
         })
-    //    所有el,data都当作vm下面的属性,前面会有$符号，但data里面的属性，例如msg，就没有$符号。
+        // 在浏览器 console 界面查看，所有el,data都当作vm下面的属性,前面会有$符号（vue.$el），
+        // 但data里面的属性，例如msg，就没有$符号(vue.msg)。
 
 
+
+        /*通常：MVC模式  M:model(数据)  V：view （页面） C:controller（后台控制器）;
+           用户从view端发起 -> controller -> model(获取数据) -> controller -> view
+
+           vue,react都是 MVVM 模式 M:model(数据)  V：view （页面）VM: view model；
+           双向数据绑定； DOM监听：监听DOM值变化，将变化值给model（数据）
+         */
     </script>
 </body>
 </html>

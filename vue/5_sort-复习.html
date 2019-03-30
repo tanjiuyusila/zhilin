@@ -13,20 +13,24 @@
     var arr = [2,5,7,3,1,11];
     console.log(arr.sort()); //sort方法修改原数组，按字符串排序
     console.log(arr);
+
    //排序
-    var arr1 = [2,5,7,3,1,11]
+    var arr1 = [2,5,7,3,1,11];
     arr1.sort(function (a,b) {
-        return a-b;
-    })
-    console.log(arr1)
+        return a-b;      //前 - 后，如果 前 > 后，换位置； (正序)
+    //    return b-a;     //倒序
+    });
+    console.log(arr1);
+
     //按对象某一属性排序
     var arr2 = [{age:12},{age:14},{age:15}];
     arr2.sort(function (a,b) {
         return a.age-b.age;
-    })
-    console.log(arr2)
+    });
+    console.log(arr2);
+
    //乱序
-    var arr3 = [2,5,7,3,1,11]
+    var arr3 = [2,5,7,3,1,11];
     arr3.sort(function (a,b) {
          return Math.random() - 0.5;
     })

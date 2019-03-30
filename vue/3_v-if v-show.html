@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>v-if v-show</title>
+    <!--
+    辨析：1.切换速度；
+          2.template标签下使用
+          3.能否接v-else
+    -->
 </head>
 <body>
 <div id="app" >
@@ -18,12 +23,15 @@
     <h1 v-else>
         CCCCCCC
     </h1>
-    <template v-if="msg">   <!--需求：div永远不显示，里面的内容一起显示隐藏：将div换成template标签，不是html有效标签，是vue自带的标签，类似于组件,不显示的时候不会渲染，与display：none不同-->
+    <template v-if="msg">   <!--需求：div永远不显示，里面的内容一起显示隐藏：
+    （div在f12 elements界面显示影响代码结构）将div换成template标签，不是html有效标签，是vue自带的标签，类似于组件.
+    v-if 不显示的时候不会渲染，（与v-show辨析）与display：none不同-->
         <p>111</p>
         <p>222</p>
     </template >
     <div v-show="msg">
-        <!--类似于display：none；与if显示辨析:频繁切换用show，css属性切换比重新渲染快得多；tamplate属性下没有v-show；v-show后面不能加v-else-->
+        <!--类似于display：none；与if显示辨析:频繁切换用show，css属性（display：none->block）切换比重新渲染快得多；
+        tamplate属性下没有v-show；v-show后面不能加v-else-->
         111
     </div>
 </div>

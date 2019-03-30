@@ -30,22 +30,26 @@
             }],
         },
         computed:{  //计算属性:通过其他属性(Fam)计算得来；
-            // Fam:function () { }  正常语法
-            // Fam(){                 es6 语法,虽然是个函数，可以当作变量用，用Fam(){}，会报错，Fam已在data定义；
+
+        //错误1：
+            // Fam:function () { }  //正常语法
+            // Fam(){      //es6 语法,虽然是个函数，可以当作变量用，用Fam(){}，会报错，Fam已在data定义；
             //     return Fam.sort(function (a,b) {
             //         return a.age-b.age;
             //     })
             // }
 
-
+        //错误2：
            // sortFam(){
-           //     console.log(this)  //this 指代vue:==>computed方=方法里面this都是vue对象；
-           //     return Fam.sort(function (a,b) {
+           //     console.log(this)  //this 指代vue:==>computed方法里面this都是vue对象；
+           //     return Fam.sort(function (a,b) {  //报错：Fam is not defined；
+           //                             // 因为new Vue({})整个大括号的内容都会传入构造方法里面，
+           //                             // 定义类的时候，用的是this.name
            //         return a.age-b.age;
            //     })
            // }
 
-
+        //正确：
             sortFam(){
               return this.Fam.sort(function (a,b) {
                    return a.age-b.age;                       //排序
