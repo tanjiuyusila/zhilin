@@ -8,7 +8,10 @@
 <body>
     <div id="app">
         <!--<input type="text" v-model="val" @keyup="fun">-->
-        <!--<input type="text" v-model="val" @keyup.13="fun">       &lt;!&ndash;修饰符&ndash;&gt;-->
+
+        <!--<input type="text" v-model="val" @keyup.13="fun">      -->
+        <!--修饰符-->
+
         <input type="text" v-model="val" @keyup.enter="fun">       <!--修饰符-->
         {{msg}}
     </div>
@@ -22,13 +25,14 @@
             },
             methods:{
                 fun(){
-                    console.log(event.keyCode)
+                    console.log(event.keyCode);
                     // if(event.keyCode == 13){
                     //     // this.msg  += this.val   //是字符串拼接，解决方法如下：
                     //     // this.msg  += this.val *1  //方法1
                     //     this.msg  += Number(this.val)   //方法2
                     // }
-                    this.msg  += this.val *1  //修饰符对应
+                    this.msg  += this.val *1;  //修饰符对应
+                    this.val = '';
 
                 },
             }
