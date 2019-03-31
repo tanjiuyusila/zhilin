@@ -19,11 +19,19 @@
     <div id="app">
         <!--<div id="div1" v-bind:title="t">-->
         <button @click="click">click</button>
-        <!--<div id="div1" :title="t" :class="{red:isRed,font:isFont}">           &lt;!&ndash;简写形式是'：';   class,style是特殊的,接收的是对象,冒号！！！&ndash;&gt;-->
-        <!--<div id="div1" :title="t" :class="classObj">        &lt;!&ndash;法二&ndash;&gt;-->
-        <!--<div id="div1" :title="t" :class="[classA,classB]">      &lt;!&ndash;逗号分隔&ndash;&gt;-->
-        <!--<div id="div1" :style="{background:styleA,'font-size':styleB}">      &lt;!&ndash;对象；属性名带‘-’时，要加引号&ndash;&gt;-->
-        <!--<div id="div1" :style="styleObj">       &lt;!&ndash;法二&ndash;&gt;-->
+        <!--<div id="div1" :title="t" :class="{red:isRed,font:isFont}">          -->
+            <!--简写形式是'：';   class,style是特殊的,接收的是对象,冒号！！！-->
+
+        <!--<div id="div1" :title="t" :class="classObj">        -->
+            <!--法二-->
+
+        <!--<div id="div1" :title="t" :class="[classA,classB]">    -->
+            <!--逗号分隔-->
+
+        <!--<div id="div1" :style="{background:styleA,'font-size':styleB}">   -->
+            <!--对象；属性名带‘-’时，要加引号-->
+
+        <div id="div1" :style="styleObj">       <!--法二-->
         <div id="div1" :style="[style1,style2]">          <!--法三;操作类更加方便-->
             ddd
         </div>
