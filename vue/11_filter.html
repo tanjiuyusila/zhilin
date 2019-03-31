@@ -43,7 +43,7 @@
                     this.arr.splice(index,1);
                 },
                 filterArr(){
-                   var newArr = this.arr.filter((elem,index) => {  //箭头函数
+                   var newArr = this.arr.filter((elem,index) => {  //匿名函数this指向window，使用箭头函数
                         return elem.value.indexOf(this.msg) != -1;
                    });
                    this.showArr = newArr;
