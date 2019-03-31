@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>service</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        li{
+            height: 50px;
+            width: 400px;
+            background: green;
+            margin-bottom: 5px;
+            list-style: none;
+            line-height: 50px;
+            padding:0 10px;
+        }
+        #app{
+            margin:0 auto;
+            width: 400px;
+        }
+        span{
+            float:right;
+        }
+        h2{
+            text-align: center;
+        }
+        .Red{
+            background: red;
+        }
+        /*.Green{*/
+            /*background: green;*/
+        /*}*/
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>service</h2>
+        <ul>
+            <li v-for="(obj,index) in arr" @click="choose(obj,index)" :class="{Red:obj.isRed}">
+                {{obj.name}}
+                <span>{{obj.price}}</span>
+            </li>
+        </ul>
+        <hr>
+        total   <span>{{total}}</span>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                arr:[
+                    {
+                        name:'aaa',
+                        price:300,
+                        isRed:false,
+                    },
+                    {
+                        name:'bbb',
+                        price:500,
+                        isRed:false,
+                    },
+                    {
+                        name:'ccc',
+                        price:100,
+                        isRed:false,
+                    },
+                    {
+                        name:'ddd',
+                        price:200,
+                        isRed:false,
+                    },
+                    {
+                        name:'eee',
+                        price:50,
+                        isRed:false,
+                    }
+                ]
+            },
+            methods:{
+                choose(obj,index){
+                    obj.isRed = !obj.isRed;
+                },
+            },
+        computed:{
+             total(){
+                 let sum = 0;
+                 this.arr.forEach(function (elem,index) {
+                     if(elem.isRed){
+                         sum += elem.price;
+                     }
+                 });
+                 return sum;
+             }
+        },
+        });
+    </script>
+</body>
+</html>
