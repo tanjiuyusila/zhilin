@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>checkbox</title>
+</head>
+<body>
+    <div id="app">
+        是否需要额外的付费设施：<input type="checkbox" v-model="isShow" @click="fn">
+        <ul>
+            <li v-for="obj in falicity" v-show="isShow">
+                {{obj.name}}({{obj.price}})
+                <input type="checkbox" v-model="decorate" :value="obj">
+            </li>
+        </ul>
+        订单费用信息：
+        <ul>
+            <li v-for="obj in decorate">
+                {{obj.name}}({{obj.price}})
+            </li>
+        </ul>
+        总金额：
+        {{total}}
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                isShow:false,
+                falicity:[
+                    {
+                        'name':'沙发',
+                        'price':'200'
+                    },
+                    {
+                        'name':'wifi',
+                        'price':'20'
+                    },
+                    {
+                        'name':'床',
+                        'price':'200'
+                    }
+                ],
+                decorate:[{
+                    'name':'群力花园豪华型',
+                    'price':'400'
+                }],
+            },
+            computed:{
+                total(){
+                    var sum = 0;
+                    this.decorate.forEach(function (elem,index) {
+                        sum += elem.price * 1 ;
+                    });
+                    return sum ;
+                 }
+            },
+            methods:{
+                fn(){
+                    this.decorate.splice(1);
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
