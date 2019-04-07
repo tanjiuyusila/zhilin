@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="txt">
+        <!--<input type="password">-->
+        <!--<input type="hidden">-->
+<!--单选框-->
+        <!--两个都能点-->
+        <!--<input type="radio">女-->
+        <!--<input type="radio">男-->
+        <!--只能点一个-->
+        <!--<input type="radio" name="sex">女-->
+        <!--<input type="radio" name="sex">男-->
+<!--vue中的单选框 要写value值，传到后台，如果不写，会选中两个且不能取消-->
+        <!--<input type="radio" v-model="sex" value="f">女-->
+        <!--<input type="radio" v-model="sex" value="m">男-->
+<!--多选框，原本也是按照name分组，vue中改写成v-model-->
+        <input type="checkbox" v-model="hobby" value="足球">足球
+        <input type="checkbox" v-model="hobby" value="篮球">篮球
+        <input type="checkbox" v-model="hobby" value="乒乓球">乒乓球
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                txt:'',
+                sex:'n',  //sex里面的值是上面value的值即选中的是f，m
+                hobby:[],//字符串和数组有区别，字符串勾选多选框后会显示true，可以用作开关，写数组会显示对象
+            }
+        })
+    </script>
+
+</body>
+</html>
