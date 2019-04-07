@@ -20,9 +20,15 @@
         <!--<input type="radio" v-model="sex" value="f">女-->
         <!--<input type="radio" v-model="sex" value="m">男-->
 <!--多选框，原本也是按照name分组，vue中改写成v-model-->
-        <input type="checkbox" v-model="hobby" value="足球">足球
-        <input type="checkbox" v-model="hobby" value="篮球">篮球
-        <input type="checkbox" v-model="hobby" value="乒乓球">乒乓球
+        <!--<input type="checkbox" v-model="hobby" value="足球">足球-->
+        <!--<input type="checkbox" v-model="hobby" value="篮球">篮球-->
+        <!--<input type="checkbox" v-model="hobby" value="乒乓球">乒乓球-->
+<!--下拉列表-->
+        <select name="" id="" v-model="sel">
+            <option value="理工">理工</option>
+            <option value="黑大">黑大</option>
+            <option value="林大">林大</option>
+        </select>
     </div>
     <script src="vue.js"></script>
     <script>
@@ -32,6 +38,7 @@
                 txt:'',
                 sex:'n',  //sex里面的值是上面value的值即选中的是f，m
                 hobby:[],//字符串和数组有区别，字符串勾选多选框后会显示true，可以用作开关，写数组会显示对象
+                sel:''
             }
         })
     </script>
