@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>components</title>
+</head>
+<body>
+    <div id="app">
+<!--3. 传值-->
+        <!--<demo xx="123" yy="haha"></demo>-->
+        <!--<demo xx="456" yy="hehe"></demo>-->
+<!--4. 动态取值要用冒号-->
+        <!--<demo xx="123" :yy="m1"></demo>-->
+        <!--<demo xx="456" :yy="m2"></demo>-->
+<!--5. html不区分大小写，区分大小写，所以标签中大写换成-加小写-->
+        <demo xx="456" :yy="m2" z-z="大小写区分" x-msg="大小写2"></demo>
+        <!--{{msg}}-->
+    </div>
+    <!--<div id="app2">-->
+        <!--<demo></demo>-->
+        <!--&lt;!&ndash;{{msg}}  &ndash;&gt;-->
+    <!--</div>-->
+<!--6. 模板提出,加该type可以写html代码-->
+    <script type="text/x-template" id="temp">
+        <div>
+            <h1>hhhhhh</h1>
+            {{xx}} {{yy}}{{ZZ}}{{xMsg}}
+        </div>
+    </script>
+    <script src="vue.js"></script>
+    <script>
+ //1. 定义方法1： 全局组件，可以在不同的挂在元素(作用域)中运行
+ //        Vue.component('demo',{    //定义组件关键字，可以理解成自定义标签
+ //            template:"<h1>hhhhhh</h1>"
+ //        });
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'msg',
+                m1:'haha',
+                m2:'hehe'
+            },
+//2. 定义方法2 ：局部组件
+            components:{
+                demo:{
+                    // template:
+                        // "<div><h1>hhhhhh</h1> {{xx}} {{yy}}{{ZZ}}{{xMsg}}</div>",
+//6. 模板提出
+                    template:"#temp",
+                    props:[     //组件传值
+                        'xx',   //代表组件能接收的值
+                        'yy',
+                        'ZZ',
+                        'xMsg'
+                    ]
+
+                }
+            }
+        });
+         // new Vue({
+         //     el:'#app2',
+         //     data:{
+         //
+         //     },
+         // })
+    </script>
+</body>
+</html>

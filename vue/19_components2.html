@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>components</title>
+</head>
+<body>
+    <div id="app">
+        <demo xx="456" :yy="m2" z-z="大小写区分" x-msg="大小写2">
+<!--7. 在模板标签中添加其他标签:需要在模板中加入slot标签来确定其他标签写在哪,（即用slot占位），
+        以下两个p会算作一个整体，覆盖下面所有的slot-->
+            <!--<p>我可以覆盖所有slot中的内容</p>-->
+            <!--<p>我也想覆盖</p>-->
+<!--8. 想不同的p覆盖不同的slot : 给slot起一个name-->
+            <p slot="p1">我覆盖slot1</p>
+            <p slot="p2">我覆盖slot2</p>
+        </demo>
+    </div>
+    <script type="text/x-template" id="temp">
+        <div>
+            <h1>hhhhhh</h1>
+<!--7-->
+            <!--<slot>-->
+                <!--<p>我是默认的</p>-->
+            <!--</slot>-->
+            {{xx}} {{yy}}{{ZZ}}{{xMsg}}
+<!--7-->
+            <!--<slot>-->
+                <!--<span>我也是默认的</span>-->
+            <!--</slot>-->
+
+<!--8-->
+            <slot name="p1">
+            <p>我对应一个p</p>
+            </slot>
+            <slot name="p2">
+                <p>我对应另一个</p>
+            </slot>
+        </div>
+    </script>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'msg',
+                m1:'haha',
+                m2:'hehe'
+            },
+            components:{
+                demo:{
+                    template:"#temp",
+                    props:[
+                        'xx',
+                        'yy',
+                        'ZZ',
+                        'xMsg'
+                    ]
+
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
