@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dialog（弹出层）</title>
+    <style>
+        #dialog-box{
+            width: 400px;
+            height: 300px;
+            margin:100px auto;
+            background: #cccccc;
+        }
+        .dialog-title{
+            height: 40px;
+            background: pink ;
+            line-height: 40px;
+            padding:0 20px;
+        }
+        .close{
+            float:right
+        }
+        .content{
+            padding:10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="login">登录</button>
+        <button @click="reg">注册</button>
+<!--难点2：带参数时此处不需要改变-->
+        <my-dialog title="登录" v-show="isLogShow" @fclose="close">
+            用户名：<input type="text">
+            <br>
+            密码：<input type="password">
+            <br>
+            <input type="submit">
+        </my-dialog>
+<!--说明1：父组件往子组件传值：#app是父组件，my-dialog是子组件，title就是父到子的传值，使用props-->
+        <my-dialog title="注册" v-show="isRegShow" @fclose="close">
+            用户名：<input type="text">
+            <br>
+            密码：<input type="password">
+            <br>
+            邮箱：<input type="password">
+            <br>
+            <input type="submit"> <input type="reset">
+        </my-dialog>
+    </div>
+    <script type="text/x-template" id="my-dialog">
+        <div id="dialog-box">
+            <div class="dialog-title">
+                <span class="title-name">{{title}}</span>
+<!--难点1：子父组件传值：方法调用写在my-dialog组件中，而close则是定义在vue中的函数，等同于子组件使用父组件的方法-->
+                <!--<span class="close" @click="close">[X]</span>-->
+
+<!--难点1解决方法：$emit(close),使用该方法，调用其父元素 my-dialog 下的方法，并将close方法写在调用处，
+    即my-dialog标签中,相当于自定义事件-->
+                <!--<span class="close" @click="$emit('fclose')">[X]</span>-->
+
+<!--难点2： 父子组件传值带参数-->
+                <span class="close" @click="$emit('fclose',1,2)">[X]</span>
+            </div>
+            <div class="content">
+                <slot>
+                    <!--用户名：<input type="text">-->
+                    <!--<br>-->
+                    <!--密码：<input type="password">-->
+                </slot>
+            </div>
+        </div>
+    </script>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                isLogShow:false,
+                isRegShow:false,
+            },
+            methods:{
+                login(){
+                    this.isLogShow = true;
+                    this.isRegShow = false;
+                },
+                reg(){
+                    this.isLogShow = false;
+                    this.isRegShow = true;
+                },
+                close(a,b){//难点2：此处接收参数
+                    console.log(111);
+//难点2：传值
+                    console.log(a,b);
+                    this.isLogShow = false;
+                    this.isRegShow = false;
+                }
+            },
+            components:{
+                "my-dialog":{
+                    template:'#my-dialog',
+                    props:[   //父组件往子组件传值：#app是父组件，my-dialog是子组件
+                        'title',
+                    ]
+                }
+            }
+        })
+    </script>
+</body>
+</html>
