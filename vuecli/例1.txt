@@ -1,0 +1,8 @@
+例1：加一个链接。mine
+步骤：
+    1. 新建组件：
+    2. 在app.vue中加一个<router-link to="/mine">mine</router-link>
+    3. 路径配置：在router.js中进行
+        a.引入组件
+        b.配置路径
+    4. 显示：显示在app.vue中的router-view
