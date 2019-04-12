@@ -1,0 +1,11 @@
+例4：重定向
+        {
+          path: '/home',
+          redirect:'/',
+        },
+     重定向带参数：
+         {
+           path:'/home/:name/:age',
+           redirect:'/mine/test2/:name/:age',
+         }
+

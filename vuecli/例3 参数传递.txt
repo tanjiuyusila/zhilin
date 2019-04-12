@@ -1,0 +1,9 @@
+例3：参数传递
+步骤：
+	1. 方法1：
+		a. 在链接中以对象的形式写出参数
+		b. 在router.js中加上name用于传参
+		c. 在组件页面使用$route.params.name取值
+	2. 方法2：url传参
+		a. app.vue中写url，传参数值；
+		b. router.js中的路径上加入参数名；

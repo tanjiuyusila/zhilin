@@ -13,8 +13,26 @@ spa：单页面应用
       <router-link to="/">Home</router-link> |
       <!--router-link 解析后，是个a标签，to等于href-->
       <router-link to="/about">About</router-link>|
-<!--例1-->
-      <router-link to="/mine">Mine</router-link>
+<!--例1：添加链接-->
+      <router-link to="/mine">Mine</router-link>|
+      <!-- router-link to 对应路由里面的path-->
+<!---->
+<!--例2：子路由-->
+      <!--<router-link to="/mine/test1">子路由1</router-link>|-->
+      <!--<router-link to="/mine/test2">子路由2</router-link>|-->
+      <!--是mine的子路由，就要在mine的template里写一个router-view-->
+<!---->
+<!--例3：参数传递 写成对象结构-->
+      <router-link :to="{name:'test1',params:{name:'yaozhilin',age:25}}">子路由1</router-link>|
+      <router-link to="/mine/test2/zhangsan/12">子路由2</router-link>|
+<!---->
+<!--例4：重定向-->
+      <router-link to="/home">重定向</router-link>|
+      <!--带参数-->
+      <router-link to="/home/songli/49">重定向带参数</router-link>|
+<!---->
+<!--例5：别名-->
+      <router-link to="/yzl">别名</router-link>|
 <!---->
     </div>
     <router-view/>
