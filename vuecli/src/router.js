@@ -8,8 +8,7 @@ import Error from './views/Error.vue';
 
 
 Vue.use(Router);
-
-export default new Router({
+let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -19,14 +18,22 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/about',
+      path: '/about/:id',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-    //例5：别名 虽然跳到about中，url显示别名
+//例5：别名 虽然跳到about中，url显示别名
       alias:'/yzl',
+//例8：钩子函数（路由独享钩子）
+//       beforeEnter:(to,from,next) => {
+//         if(from.name == 'mine'){
+//           next(false);
+//         }else{
+//           next(true);
+//         }
+//       }
     },
 //例1:添加链接
     {
@@ -48,12 +55,12 @@ export default new Router({
         },
       ]
     },
-    //例4：重定向
+//例4：重定向
     {
       path: '/home',
       redirect:'/',
     },
-    //带参数
+  //带参数
     {
       path:'/home/:name/:age',
       redirect:'/mine/test2/:name/:age',
@@ -63,6 +70,22 @@ export default new Router({
       path:'*',
       component:Error,
     },
-
   ],
 });
+//例8：钩子函数
+// router.beforeEach((to,from,next) => {
+// // 全局守卫
+//   console.log(to);//跳转到的路由
+//   console.log(from);//从那个路由开始跳
+//   if(from.name == 'mine'){
+//     next(false)
+//   }else{
+//     next(true);//代表允不允许往下走；
+//   }
+//     next();
+// });
+// router.afterEach((to,from) => {
+// //全局后置钩子
+//   console.log(1)
+// });
+export default router

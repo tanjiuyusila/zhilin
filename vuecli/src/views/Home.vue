@@ -17,5 +17,13 @@ export default {
     //步骤2：只有属性名：es6中属性简写，属性名与属性名同名，变成了自己的组件，就可以在上面引用了
     HelloWorld,
   },
+//例8：组件内守卫
+  beforeRouteEnter(to,from,next){
+    //在渲染该组件的对应路由被confirm前调用
+    //不能获取组件实例this
+    //因为当守卫执行前，组件实例还没有被创建
+    console.log(111);
+    next();
+  },
 };
 </script>

@@ -12,7 +12,9 @@ spa：单页面应用
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <!--router-link 解析后，是个a标签，to等于href-->
-      <router-link to="/about">About</router-link>|
+<!--例8：组件复用时的钩子函数-->
+      <router-link to="/about/1">About</router-link>|
+      <router-link to="/about/2">About</router-link>|
 <!--例1：添加链接-->
       <router-link to="/mine">Mine</router-link>|
       <!-- router-link to 对应路由里面的path-->
