@@ -35,7 +35,12 @@ spa：单页面应用
       <router-link to="/yzl">别名</router-link>|
 <!---->
     </div>
-    <router-view/>
+<!--例6：路由过渡动画-->
+      <transition name="fade">
+          <router-view/>
+      </transition>
+<!---->
+    <!--<router-view/>-->
   </div>
 </template>
 
@@ -59,4 +64,22 @@ spa：单页面应用
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+  .fade-enter{
+    opacity:0;
+  }
+  .fade-enter-active{
+      transition: opacity 2s linear;
+  }
+  .fade-enter-to{
+    opacity:1;
+  }
+  .fade-leave{
+    transform:translate(0%);
+  }
+  .fade-leave-active{
+    transition: transform 2s linear;
+  }
+  .fade-leave-to{
+    transform:translate(100%);
+  }
 </style>

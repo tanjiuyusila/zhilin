@@ -1,0 +1,3 @@
+例7：mode history & 404
+  mode默认是hash,url上多了一个井号；
+  history模式可以充分利用history.pushstate

@@ -1,0 +1,9 @@
+例6：路由过渡动画
+6个class
+1. v-enter
+2. v-enter-active
+3. v-enter-to
+4. v-leave
+5. v-leave-active
+6. v-leave-to
+

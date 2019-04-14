@@ -4,6 +4,7 @@ import Home from './views/Home.vue';
 import Mine from './views/Mine.vue';
 import Test1 from './views/Test1.vue';
 import Test2 from './views/Test2.vue';
+import Error from './views/Error.vue';
 
 
 Vue.use(Router);
@@ -45,20 +46,23 @@ export default new Router({
           name: 'test2',
           component: Test2,
         },
-//例4：重定向
-        {
-          path: '/home',
-          redirect:'/',
-        },
-    //带参数
-        {
-          path:'/home/:name/:age',
-          redirect:'/mine/test2/:name/:age',
-        },
       ]
     },
-//
-
+    //例4：重定向
+    {
+      path: '/home',
+      redirect:'/',
+    },
+    //带参数
+    {
+      path:'/home/:name/:age',
+      redirect:'/mine/test2/:name/:age',
+    },
+//例7：404
+    {
+      path:'*',
+      component:Error,
+    },
 
   ],
 });
