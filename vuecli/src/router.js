@@ -5,6 +5,8 @@ import Mine from './views/Mine.vue';
 import Test1 from './views/Test1.vue';
 import Test2 from './views/Test2.vue';
 import Error from './views/Error.vue';
+import Movie from './views/Movie.vue';
+import MovieDetail from './views/MovieDetail.vue';
 
 
 Vue.use(Router);
@@ -69,6 +71,15 @@ let router = new Router({
     {
       path:'*',
       component:Error,
+    },
+//例9：编程式导航
+    {
+      path:'/movie',
+      component:Movie,
+    },
+    {
+      path:'/movieDetail/:movieId',
+      component:MovieDetail,
     },
   ],
 });
