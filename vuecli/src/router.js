@@ -7,6 +7,8 @@ import Test2 from './views/Test2.vue';
 import Error from './views/Error.vue';
 import Movie from './views/Movie.vue';
 import MovieDetail from './views/MovieDetail.vue';
+import VuexA from './views/VuexA.vue';
+import Vuex from './views/Vuex.vue';
 
 
 Vue.use(Router);
@@ -81,6 +83,15 @@ let router = new Router({
       path:'/movieDetail/:movieId',
       component:MovieDetail,
     },
+//例10：VueX
+    {
+      path:'/vuexa',
+      component:VuexA,
+    },
+    {
+      path:'/vuex',
+      component:Vuex,
+    }
   ],
 });
 //例8：钩子函数

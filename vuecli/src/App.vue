@@ -39,6 +39,9 @@ spa：单页面应用
 <!--例9：编程式导航-->
       <router-link to="/movie">电影列表</router-link>|
 <!---->
+<!--例9：编程式导航-->
+      <router-link to="/vuex">VueX</router-link>|
+<!---->
     </div>
 <!--例6：路由过渡动画-->
       <transition name="fade">
