@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #smallbox{
+            width: 400px;
+            height: 400px;
+            float:left;
+            position: relative;
+        }
+        #drag{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top:0;
+            left: 0;
+            background: white;
+            opacity: 0.5;
+            display: none;
+        }
+        #bigbox{
+            width: 400px;
+            height: 400px;
+            float:left;
+            overflow: hidden;
+            display: none;
+            position: relative;
+        }
+        #bigimg{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="smallbox">
+        <img src="1.jpg" alt="">
+        <div id="drag"></div>
+    </div>
+    <div id="bigbox">
+        <img id="bigimg" src="2.jpg" alt="">
+    </div>
+
+    <script>
+        oSmall = document.getElementById('smallbox');
+        oBig = document.getElementById('bigbox');
+        oDrag = document.getElementById('drag');
+        obigImg = document.getElementById('bigimg');
+        oSmall.onmouseover = function () {
+            oBig.style.display = 'block';
+            oDrag.style.display = 'block';
+        };
+        oSmall.onmousemove = function (e) {
+            //滑块定位
+            x = e.clientX;  //鼠标定位
+            y = e.clientY;
+            oDrag.style.left = x - oDrag.offsetWidth/2 + 'px';   //这是字符串拼接！！！加px。
+            oDrag.style.top = y - oDrag.offsetHeight/2 + 'px';
+            if(oDrag.offsetLeft < 0){
+                oDrag.style.left = 0;
+            }
+            if(oDrag.offsetLeft >= oSmall.offsetWidth - oDrag.offsetWidth){
+                oDrag.style.left = oSmall.offsetWidth - oDrag.offsetWidth + 'px';
+            }
+            if(oDrag.offsetTop < 0){
+                oDrag.style.top = 0;
+            }
+            if(oDrag.offsetTop >= oSmall.offsetHeight - oDrag.offsetHeight){
+                oDrag.style.top = oSmall.offsetHeight - oDrag.offsetHeight + 'px';
+            }
+            //计算距离
+            //小图能走的最大X距离
+            osmallMax = oSmall.offsetWidth - oDrag.offsetWidth;
+            //大图能走的最大X距离
+            obigMax = obigImg.offsetWidth - oBig.offsetWidth;
+            //X百分比
+            opercent = oDrag.offsetLeft/osmallMax;
+            //X定位
+            obigImg.style.left = -opercent*obigMax + 'px';
+
+            console.log(osmallMax,obigMax);
+            //小图能走的最大Y距离
+            osmallMaxY = oSmall.offsetHeight - oDrag.offsetHeight;
+            //大图能走的最大Y距离
+            obigMaxY = obigImg.offsetHeight - oBig.offsetHeight;
+            //Y百分比
+            opercentY = oDrag.offsetTop/osmallMaxY;
+            //Y定位
+            obigImg.style.top = -opercentY*obigMaxY + 'px';
+        };
+        oSmall.onmouseout = function () {
+            oBig.style.display = 'none';
+            oDrag.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
