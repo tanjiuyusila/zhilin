@@ -1,7 +1,8 @@
 <template>
   <li>
     <div class="movie-img">
-      <img :src="'https://images.weserv.nl/?url='+movie.images.small" alt="">
+      <!--<img :src="'https://images.weserv.nl/?url='+movie.images.small" alt="">-->
+      <img :src="movie.images.small" alt="">
     </div>
     <div class="movie-desc">
       <h4>{{movie.title}}</h4>

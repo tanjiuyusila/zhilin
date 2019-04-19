@@ -12,7 +12,9 @@
         <!--</div>-->
       <!--</li>-->
 <!--Day3: 将li封装组件 -->
-      <MovieList v-for="movie in MovieList" :movie="movie"></MovieList>
+      <!--<MovieList v-for="movie in MovieList" :movie="movie"></MovieList>-->
+<!--Day4：电影详情页-->
+      <MovieList v-for="movie in MovieList" :movie="movie" @click.native="getDetail(movie)"></MovieList>
     </ul>
     <div class="loading" v-show="isShow">
       <img src="../../assets/img/loading.gif" alt="">
@@ -62,13 +64,13 @@
         var clientHeight = document.documentElement.clientHeight;//屏幕高度
         // console.log(scrollTop,scrollHeight,clientHeight);
 
-        // if(scrollTop + clientHeight == scrollHeight ){
+        // if(scrollTop + clientHeight == scrollHeight && !this.isEnd){
 //如果 scrollTop 到底的时候取到的是小数
         if(Math.abs(document.documentElement.scrollTop +document.documentElement.clientHeight - document.documentElement.scrollHeight) < 1 && !this.isEnd){
 
           // console.log(scrollTop,scrollHeight,clientHeight);
-          // this.isShow = true;
-          // Axios.get("https://bird.ioliu.cn/v1?url=https://api.douban.com/v2/movie/in_theaters?start="+this.MovieList.length+"&&count=5")//返回的是一个promise对象，jqurey返回的是json对象
+          this.isShow = true;
+          Axios.get("https://bird.ioliu.cn/v1?url=https://api.douban.com/v2/movie/in_theaters?start="+this.MovieList.length+"&&count=5")//返回的是一个promise对象，jqurey返回的是json对象
           //   .then((res) =>{
           //     // console.log(res.data.subjects);
           //     this.MovieList = [...this.MovieList,...res.data.subjects];
@@ -84,7 +86,7 @@
     },
     methods:{
       getMovie(){
-        this.isShow = true;
+        // this.isShow = true;
         Axios.get("https://bird.ioliu.cn/v1?url=https://api.douban.com/v2/movie/in_theaters?start="+this.MovieList.length+"&&count=5")//返回的是一个promise对象，jqurey返回的是json对象
         .then((res) =>{
             // console.log(res.data.subjects);
@@ -106,7 +108,11 @@
         //       this.isEnd = true;
         //     }
         //   });
-      }
+      },
+      getDetail(movie){
+        console.log(movie.id);
+        this.$router.push('/movie-detail/'+movie.id);
+      },
     }
   }
 </script>
