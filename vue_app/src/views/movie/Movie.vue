@@ -2,19 +2,19 @@
   <div class="movie">
     <ul>
       <!--<li v-for="movie in movieList">-->
-        <!--<div class="movie-img">-->
-          <!--<img :src="'https://images.weserv.nl/?url='+movie.images.small" alt="">-->
-        <!--</div>-->
-        <!--<div class="movie-desc">-->
-          <!--<h4>{{movie.title}}</h4>-->
-          <!--<p>观众评分： <span class="cast">{{movie.rating.average}}</span></p>-->
-          <!--主演：<span v-for="cast in movie.casts">{{cast.name}} </span>-->
-        <!--</div>-->
+      <!--<div class="movie-img">-->
+      <!--<img :src="'https://images.weserv.nl/?url='+movie.images.small" alt="">-->
+      <!--</div>-->
+      <!--<div class="movie-desc">-->
+      <!--<h4>{{movie.title}}</h4>-->
+      <!--<p>观众评分： <span class="cast">{{movie.rating.average}}</span></p>-->
+      <!--主演：<span v-for="cast in movie.casts">{{cast.name}} </span>-->
+      <!--</div>-->
       <!--</li>-->
-<!--Day3: 将li封装组件 -->
+      <!--Day3: 将li封装组件 -->
       <!--<MovieList v-for="movie in MovieList" :movie="movie"></MovieList>-->
-<!--Day4：电影详情页-->
-      <MovieList v-for="movie in MovieList" :movie="movie" @click.native="getDetail(movie)"></MovieList>
+      <!--Day4：电影详情页-->
+      <MovieList v-for="(movie,index) in MovieList" :key="index" :movie="movie" @click.native="getDetail(movie)"></MovieList>
     </ul>
     <div class="loading" v-show="isShow">
       <img src="../../assets/img/loading.gif" alt="">
@@ -25,7 +25,7 @@
   </div>
 </template>
 <script>
-//Day2: 电影页面start
+  //Day2: 电影页面start
   import Axios from 'axios';
   import MovieList from '@/views/movie/MovieList.vue';
   export default{
@@ -57,7 +57,7 @@
       //     this.MovieList = res.data.subjects;
       //   });
       this.getMovie();
- //  Day3:触底刷新
+      //  Day3:触底刷新
       window.onscroll =  ()=>{
         var scrollTop = document.documentElement.scrollTop;//滚动条距顶高度
         var scrollHeight = document.documentElement.scrollHeight;//滚动条长度
@@ -88,7 +88,7 @@
       getMovie(){
         // this.isShow = true;
         Axios.get("https://bird.ioliu.cn/v1?url=https://api.douban.com/v2/movie/in_theaters?start="+this.MovieList.length+"&&count=5")//返回的是一个promise对象，jqurey返回的是json对象
-        .then((res) =>{
+          .then((res) =>{
             // console.log(res.data.subjects);
             this.MovieList = [...this.MovieList,...res.data.subjects];
             this.isShow = false;

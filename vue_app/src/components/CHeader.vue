@@ -11,9 +11,9 @@
   import{mapState} from 'vuex';
   export default{
 
-    props:[
+    // props:[
       // 'bgColor'// 3-5 原生修改颜色
-    ],
+    // ],
     computed:{
       ...mapState([
         'bgColor' ,// 3-5 vuex修改颜色

@@ -8,11 +8,13 @@
     <!--<c-footer :menu="menu" @changeHBg="fn"></c-footer>-->
 
 <!--3-5 vuex修改颜色-->
-    <c-header ></c-header>
-    <div id="content">
-      <router-view></router-view>
+    <div>
+      <c-header ></c-header>
+      <div id="content">
+        <router-view></router-view>
+      </div>
+      <c-footer :menu="menu"></c-footer>
     </div>
-    <c-footer :menu="menu"></c-footer>
   </div>
 </template>
 <script>
@@ -63,12 +65,12 @@
         // bgColor:'pink',//3-5 原生修改颜色
       }
     },
-    methods:{
+    // methods:{
 //3-5 原生修改颜色
     //   fn(bgColor){
     //     this.bgColor = bgColor;
     //   }
-    },
+    // },
   }
 </script>
 <style>
