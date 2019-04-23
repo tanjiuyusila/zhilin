@@ -5,7 +5,9 @@ import store from './store';
 import '@/assets/css/reset.css';//css文件直接导入
 import '@/assets/js/rem';//相对html的font-size大小,font-size是50px，1rem就是50px
 import "@/assets/css/vue-swipe.css";//book
+import VueTouch from 'vue-touch';
 
+Vue.use(VueTouch,{'name':'vue-touch'});
 Vue.config.productionTip = false;
 
 new Vue({

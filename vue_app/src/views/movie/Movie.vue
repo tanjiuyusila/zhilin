@@ -70,7 +70,7 @@
 
           // console.log(scrollTop,scrollHeight,clientHeight);
           this.isShow = true;
-          Axios.get("https://bird.ioliu.cn/v1?url=https://api.douban.com/v2/movie/in_theaters?start="+this.MovieList.length+"&&count=5")//返回的是一个promise对象，jqurey返回的是json对象
+          // Axios.get("https://bird.ioliu.cn/v1?url=https://api.douban.com/v2/movie/in_theaters?start="+this.MovieList.length+"&&count=5")//返回的是一个promise对象，jqurey返回的是json对象
           //   .then((res) =>{
           //     // console.log(res.data.subjects);
           //     this.MovieList = [...this.MovieList,...res.data.subjects];
