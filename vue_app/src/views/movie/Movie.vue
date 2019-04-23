@@ -113,7 +113,10 @@
         console.log(movie.id);
         this.$router.push('/movie-detail/'+movie.id);
       },
-    }
+    },
+    destroyed(){ //解决其他界面下拉刷新。当前组件销毁，一离开就调用该钩子函数
+      window.onscroll = null;
+    },
   }
 </script>
 <style>

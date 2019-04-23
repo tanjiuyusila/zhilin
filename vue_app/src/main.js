@@ -4,6 +4,8 @@ import router from './router';
 import store from './store';
 import '@/assets/css/reset.css';//css文件直接导入
 import '@/assets/js/rem';//相对html的font-size大小,font-size是50px，1rem就是50px
+import "@/assets/css/vue-swipe.css";//book
+
 Vue.config.productionTip = false;
 
 new Vue({

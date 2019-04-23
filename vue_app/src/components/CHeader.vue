@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header :style="{background:bgColor}">
+    <header :style="{background:bgColor,zIndex:1}">
       <span class="goHome">首页</span>
       <span>{{title}}</span>
     </header>
