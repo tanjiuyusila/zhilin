@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str = '113abc';
+    console.log(parseInt(str));//113,原本是全局的
+    console.log(Number.parseInt(str)); //113，es6改成的Number下面
+    //为了更好的模块封装，避免污染全局变量
+    console.log(Number.isNaN(NaN));//true
+    console.log(isNaN(123));//false
+    console.log(Number.isFinite(0.5)); //是不是一个number
+    console.log(Number.isInteger(0.5)); //是不是一个整数
+    console.log(Number.isArray(0.5)); //是不是一个数组
+    console.log(Math.sign());//整数返回1，负数返回-1；
+    console.log(Math.trunc(5.5));//向下取整
+    Math.ceil()//向上取整
+
+
+</script>
+</body>
+</html>
