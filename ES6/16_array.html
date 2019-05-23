@@ -5,6 +5,131 @@
     <title>Title</title>
 </head>
 <body>
+<ul>
+    <li>001</li>
+    <li>002</li>
+    <li>003</li>
+    <li>004</li>
+</ul>
+<script>
+    /* 1. Array.from():类数组转换成真的数组;类数组：set，
+            var obj = {
+                a:1,
+                b:2
+            };
+            console.log(Array.from(obj)); //[]
 
+            var obj = {
+                a:1,
+                b:2,
+                length:3
+            };
+            console.log(Array.from(obj)); //[undefined, undefined, undefined]
+
+            var obj = {
+                1:1,
+                b:2,
+                length:3
+            };
+            console.log(Array.from(obj)); //[undefined,1, undefined]
+
+            var obj = {
+                0:0,
+                1:1,
+                2:2,
+                5:5,
+                length:3
+            };
+            console.log(Array.from(obj)); // [0, 1, 2],键对应下标
+
+             var obj = {
+                0:0,
+                1:1,
+                2:2,
+                5:5,
+                length:8
+            };
+            console.log(Array.from(obj)); //  [0, 1, 2, undefined, undefined, 5, undefined, undefined]
+     */
+    /* arr -> set,map
+            var arr = [12,3,4,4];
+            var set = new Set(arr);
+            console.log(set); //{12, 3, 4}
+            // var m = new Map(arr);
+            // console.log(m); //报错，因为map要是是键值对
+            var arr1 = [[12,4],[3,4],['abc',2]]; //二维数组
+            var m1 = new Map(arr1);
+            console.log(m1); //Map(3) {12 => 4, 3 => 4, "abc" => 2}
+    */
+    /* map -> arr
+    var arr = [[12,4],[3,4],['abc',2]]; //二维数组
+    var m = new Map(arr);
+    console.log(Array.from(m));
+    // (3) [Array(2), Array(2), Array(2)]
+    // 0: (2) [12, 4]
+    // 1: (2) [3, 4]
+    // 2: (2) ["abc", 2]
+    // length: 3
+    */
+    /* Array.from 转dom结构
+        var aLi = document.getElementsByTagName('li');//通过document得到的都不是数组，是nodelist节点列表（类数组），push方法不好使
+        console.log(aLi);
+        console.log(Array.from(aLi));
+        console.log(Array.from(aLi).push('1111'));//5，push返回的是数组长度
+        var arr = Array.from(aLi);
+        arr.push('1');
+        console.log(arr); //[li, li, li, li, "1"]
+     */
+    /* 2. Array.of()
+        var arr = new Array(3);//原来写一个3代表长度
+        console.log(arr);//[empty × 3]
+        var arr1 = new Array(3,4); //两个参数代表数组
+        console.log(arr1);//[3, 4];
+        var a1 = [3];
+        console.log(a1); //[3]
+        var arr2 = Array.of(3) ;
+        console.log(arr2); //[3]
+    */
+    /* 3. arr.fill()
+    var arr = new Array(3);
+    console.log(arr.fill(10));//[10, 10, 10]
+    var arr1 = new Array(3,3,4,5,6,7);
+    console.log(arr1.fill(10,3,4));//[3, 3, 4, 10, 6, 7]从第3个开始，4结束（不包括4），赋值10
+    console.log(arr1.fill(10,3));//[3, 3, 4, 10, 10, 10]
+    console.log(arr1.fill(10,3,-1));//[3, 3, 4, 10, 10, 7],-1是最后一个，不包括-1
+    */
+    /* 4. forEach,后面是索引，本身没有返回值undefined
+        var arr = [1,2,3,4,5,6,7];
+        arr.forEach(function (xx,index) {
+        console.log(xx); //1,2,3,4,5,6,7
+        console.log(xx,index) //1 0,2 1,3 2,4 2,5 4,6 5,7 6
+        })
+    */
+    /*5. map,前面是值，后面是索引，有返回值,不改变原数组
+        var arr = [1,2,3,4,5,6,7];
+        arr.map(function (xx,index) {
+        console.log(xx);//1,2,3,4,5,6,7
+        console.log(xx); //1 0,2 1,3 2,4 2,5 4,6 5,7 6
+        return xx+5;
+         });
+        console.log(   // [6, 7, 8, 9, 10, 11, 12]
+            arr.map(function (xx,index) {
+            console.log(xx);//1,2,3,4,5,6,7
+            console.log(xx,index); //1 0,2 1,3 2,4 2,5 4,6 5,7 6
+            return xx+5;
+            })
+         );
+     */
+    /* 6. arr.filter,返回满足return条件的元素(原数组中的)
+
+     */
+    var arr = [1,2,3,4,5,6,7];
+    console.log(arr.filter(function (xx,index) {  //[1,2,3,4,5,6,7];
+        console.log(xx,index); //1 0,2 1,3 2,4 2,5 4,6 5,7 6
+        xx += 10;
+        return  xx>3
+    }));
+
+</script>
 </body>
 </html>
