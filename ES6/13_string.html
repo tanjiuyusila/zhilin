@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>string</title>
+</head>
+<body>
+
+    <script>
+/*
+    1. 模板字符串,str普通字符串，即使回车，输出也是一行，str1模板字符串：
+        优点1. 输出更好看，有换行，缩进
+*/
+/* 优点1：
+        var str = "<div><p>pppp</p><h1>hhhhh</h1></div>";
+        console.log(str); //<div><p>pppp</p><h1>hhhhh</h1></div>
+        var str1 = `<div>
+    <p>ppp</p>
+</div>`;
+        console.log(str1);
+        <div>
+             <p>ppp</p>
+        </div>
+*/
+/* 优点2：如果要将变量放入字符串,原本字符串拼接很麻烦，模板字符串不需要字符串拼接，只要在要加入变量的部分，
+加上${p}即可；p处可以实变量，也可以是表达式，比如三目运算符，不能输出for循环等语句
+
+        var p = 'ssssssss';
+        var str = "<div>'<p>"+p+"</p><h1></h1>'</div>";
+        console.log(str); //<div>'<p>ssssssss</p><h1></h1>'</div>
+        var str1 = `<div>${p+'aaa'}</div>`;
+        console.log(str1); //<div>ssssssss</div>
+ */
+/* 3. startWith;endWith
+        var str = '不想学习';
+        console.log(str.includes('不'));  //true
+        console.log(str.startsWith('不')); //true
+        console.log(str.endsWith('想')); //false
+        console.log(str.includes('不',2));  //false 索引2(包括2)之后有没有不
+        console.log(str.startsWith('不',2)); //false  索引2(包括2)以。。开始
+        console.log(str.endsWith('想',2)); //true  到索引2结束，不包括2，以。。结束
+*/
+/* 4.repeat
+        var str = '不想学习';
+        console.log(str.repeat(3)); //不想学习不想学习不想学习
+*/
+/* 5. padStart //将字符串补到5位，从开始补
+        var str = 'abc';
+        console.log(str.padStart(5,'1234'));//12abc
+        console.log(str.padStart(10,'1234')) //1234123abc
+
+ */
+/* 6. padEnd //将字符串补到5位，从结尾补
+        var str = 'abc';
+        console.log(str.padEnd(5,'1234'));//abc12
+        console.log(str.padEnd(10,'1234')) //abc1234123
+ */
+
+    </script>
+</body>
+</html>
