@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+<!--点击按钮请求数据，将数据放在div1中-->
+    <button id="btn">btn</button>
+    <div id="div1">
+
+    </div>
+    <script>
+
+        var btn = document.getElementById('btn');
+        var oDiv = document.getElementById('div1');
+        btn.onclick = function () {
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.open("GET","a.json",true);//method,url,async
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function () {
+                if(xmlhttp.readyState ==4 && xmlhttp.status == 200){
+                    oDiv.innerHTML = JSON.parse(xmlhttp.responseText).a;
+                }
+            }
+        }
+/*ajax原理
+    //  1.创建XMLHttpRequest对象
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+
+     // 2.发送请求
+        xmlhttp.open("GET","a.json",true);//method,url,async
+        xmlhttp.send();
+
+
+                //请求类型：1.GET      是请求  ；数据量小（2-4k）  ；   请求放在地址栏中（包头）    ；  可以缓存
+                //         2.POST     是提交   ；数据量很大       ；    请求体中，更安全（包体）   ；  不可以缓存
+
+    //  3.服务器响应
+        xmlhttp.onreadystatechange = function () {
+            if(xmlhttp.readyState ==4 && xmlhttp.status == 200){
+                console.log(xmlhttp.responseText);
+            }
+        }
+*/
+    </script>
+</body>
+</html>

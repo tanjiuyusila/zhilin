@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jq</title>
+</head>
+<body>
+    <button id="btn">btn</button>
+    <div id="div1">
+
+    </div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    /*
+    $.get('url',{    //url
+        name:'zs';/参数，根据这个去后台找
+    }，function(){
+        //回调函数
+    },'json'); //返回数据类型
+     */
+    $('#btn').click(function () {
+        $.get('a.json',function (data) {
+            $('#div1').html(data.a)
+        },'json')
+    });
+
+
+</script>
+</body>
+</html>
