@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise</title>
+</head>
+<body>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    /*  理解
+    p.then((data) => {//then方法是异步的，当p返回有状态的promise对象，then方法自动调用
+        console.log(data + 'resolve')
+    },(data) => {  //then方法的两个参数，都是函数，一个成功，一个失败
+        console.log(data + 'reject')
+    });
+    */
+    /* then方法第二个参数可以不加，有一个catch方法.catch和第二个参数区别：catch能拿到上面所有的失败函数；
+    获取b页面
+         p.then((data) => {//then方法是异步的，当p返回有状态的promise对象，then方法自动调用
+        console.log(data + 'resolve');
+        $.get('b.json',function (d2) {
+            console.log(d2.b);
+        },'json')
+    }).catch((data) => {
+        console.log(data + 'catch')
+    });
+     */
+    /*
+    var p = new Promise(function (resolve,reject) {  //返回是是promise对象，是带状态的，成功或者失败
+        console.log('0000');
+        setTimeout(function () {
+            resolve(1111)
+        },1000)
+    });
+    p.then((data) => {//then方法是异步的，当p返回有状态的promise对象，then方法自动调用
+        console.log(data);    //1111
+        return f1();
+    }).then((data) => {
+        console.log(data);  //2222
+        return f2()
+    }).catch((data) => {
+        console.log(data)
+    });
+
+    var f1 = function () {
+        var p = new Promise((resolve,reject) => {
+            setTimeout(function () {
+                resolve(2222)
+            },1000)
+        });
+        return p;
+    };
+    var f2 = function () {
+        var p = new Promise((resolve,reject) => {
+            setTimeout(function () {
+                reject(3333)
+            },1000)
+        });
+        return p;
+    }
+    */
+    /* promise 实例，包括all，race
+    var p1 = new Promise(function (resolve,reject) {  //返回是是promise对象，是带状态的，成功或者失败
+        setTimeout(function () {
+            resolve(3333)
+        },1000)
+    });
+    var p2 = new Promise(function (resolve,reject) {  //返回是是promise对象，是带状态的，成功或者失败
+        setTimeout(function () {
+            resolve(1111)
+        },200)
+    });
+    var p3 = new Promise(function (resolve,reject) {  //返回是是promise对象，是带状态的，成功或者失败
+        setTimeout(function () {
+            resolve(2222)
+        },100)
+    });
+    var p = Promise.all([p1,p2,p3]); //需求：一次发10个请求。都成功，再。。。
+    p.then((data) => {
+        console.log(data);  //[3333, 1111, 2222]
+    },(data) => {
+        console.log(data);  //如果有一个失败，就调用这个函数,但不阻塞比他慢的执行，只是白执行
+    });
+    var b = Promise.race([p1,p2,p3]);   //返回最快的，无论成功失败：应用：百度，一次请求好多服务器，那个最快，就返回那个
+    b.then((data) => {
+        console.log(data);  //1111
+    });
+    */
+
+    /* 原生Promise.all
+        同时写10个ajax，写一个计数器，成功一个，计数器加1，写一个定时器，每个50ms轮询定时器计数;
+        或者在每个异步中加一个if判断
+        var num = 0;
+        setTimeout(function () {
+            num++;
+        },1000);
+        setTimeout(function () {
+            num++;
+        },2000);
+        setTimeout(function () {
+            num++;
+        },500);
+        var timer = setInterval(function () {
+            if(num == 3){  //不加定时器不会执行，因为异步不会阻塞代码
+                console.log('success');
+                clearInterval(timer)
+            }
+        },50)
+     */
+
+
+</script>
+</body>
+</html>
