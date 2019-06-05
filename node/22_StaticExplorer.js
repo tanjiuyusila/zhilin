@@ -1,4 +1,4 @@
-/*
+ /*
 静态资源管理器：接18——linkCss
 
 1. 静态资源传值：
@@ -60,22 +60,22 @@ var url  = require('url');
                  */
                     var pointPosition = pathname.lastIndexOf('.');
                     // console.log(pointPosition);//2
-                    var mmieString = pathname.substring(pointPosition+1);
-                    // console.log(mmieString)//css jpg
+                    var mimeString = pathname.substring(pointPosition+1);
+                    // console.log(mimeString)//css jpg
 
                 /*
                     ii.switch case:
                 */
-                var mmietype;
-                switch(mmieString){
+                var mimetype;
+                switch(mimeString){
                     case 'css':
-                        mmietype = 'text/css';
+                        mimetype = 'text/css';
                         break;
                     case 'jpg':
-                        mmietype = 'img/jpeg';
+                        mimetype = 'img/jpeg';
                         break;
                     default:
-                        mmietype = 'text/plain'
+                        mimetype = 'text/plain'
                 }
                 /*
                     d:读取所有静态资源；用异步读文件；类型统一是二进制；
@@ -86,8 +86,8 @@ var url  = require('url');
                         res.writeHead(500,{'Content-type':'text/palin'});
                         res.end(err)
                     }else{
-                        res.writeHead(200,{'Content-type':mmietype});
-                        res.write(file,'binary')//专门写包体，写简单的，用end来写就可以。end既可以写，也可以截包
+                        res.writeHead(200,{'Content-type':mimetype});
+                        res.write(file,'binary'); //专门写包体，写简单的，用end来写就可以。end既可以写，也可以截包
                         res.end();
                     }
                 })
