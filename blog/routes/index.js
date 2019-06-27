@@ -14,6 +14,8 @@ router.post('/reg',User.do_reg);
 router.get('/login',User.login);
 //登录
 router.post('/login',User.do_login);
+//失焦判断用户名是否存在
+router.post('/check',User.check);
 
 module.exports = router;
 

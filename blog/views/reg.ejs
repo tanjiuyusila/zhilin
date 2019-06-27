@@ -9,10 +9,23 @@
 </head>
 <body>
     <form action="/reg" method="post">
-        用户名：<input type="text" name="uname"><br/>
+        用户名：<input type="text" name="uname" id="u1"><br/>
         密码：<input type="password" name="pass"><br/>
         <input type="submit" name="sub" value="注册">
     </form>
+    <!--是否加public，要看app.js里的入口文件-->
+    <script src="javascripts/jquery.min.js"></script>
+    <script>
+        $('#u1').blur(function () {
+            var name = $(this).val();
+            $.post('/check',"uname="+name,function (data) {
+                //console.log(data);
+                if(data == 'success'){
+                    $('#u1').after("<span>用户名已存在</span>")
+                }
+            },'text');
+        })
+    </script>
 
 </body>
 </html>
