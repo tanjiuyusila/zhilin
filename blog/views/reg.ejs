@@ -21,7 +21,10 @@
             $.post('/check',"uname="+name,function (data) {
                 //console.log(data);
                 if(data == 'success'){
-                    $('#u1').after("<span>用户名已存在</span>")
+                    $('#u1').after("<span id='s1'>用户名已存在</span>")
+                }
+                if(data == 'error'){
+                    $('#s1').remove();
                 }
             },'text');
         })
