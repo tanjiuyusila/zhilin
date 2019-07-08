@@ -31,6 +31,13 @@ router.get('/unlogin',User.unlogin);
 router.get('/add',Blog.add);
 //post提交博客
 router.post('/add',Blog.do_add);
+//分类管理
+router.get('/blogCatalogs',Blog.Catalog);
+//添加分类
+router.post('/addBlogCatalog',Blog.addBlogCatalog);
+//更新博客
+router.get('/update',Blog.update);
+router.post('/update',Blog.do_update);
 
 
 
