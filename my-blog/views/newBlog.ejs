@@ -99,7 +99,9 @@
 
   <tr>
 
-    <td><textarea name="content" id="ta_blog_content" style="width:750px;height:300px;"></textarea></td>
+    <td><textarea id="editor_id" name="content" style="width:750px;height:300px;">
+
+		</textarea></td>
   </tr>
   <tr class="option">
 	<td><strong>文章类型？</strong>
@@ -136,8 +138,14 @@
   </tbody></table>
 </form>
 </div>
-<script type='text/javascript' src='kindeditor/kindeditor-min.js' charset='utf-8'></script>
-
+<!--<script type='text/javascript' src='kindeditor/kindeditor-min.js' charset='utf-8'></script>-->
+<script charset="utf-8" src="/editor/kindeditor-all-min.js"></script>
+<script charset="utf-8" src="/editor/lang/zh-CN.js"></script>
+<script>
+	KindEditor.ready(function(K) {
+		window.editor = K.create('#editor_id');
+	});
+</script>
 <style>
 
 .ke-icon-code {
