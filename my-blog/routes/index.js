@@ -38,7 +38,8 @@ router.post('/addBlogCatalog',Blog.addBlogCatalog);
 //更新博客
 router.get('/update',Blog.update);
 router.post('/update',Blog.do_update);
-
+//删除博客
+router.get('/del',Blog.del);
 
 
 

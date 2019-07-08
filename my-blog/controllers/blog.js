@@ -107,3 +107,11 @@ exports.do_update = function (req,res,next) {
         }
     })
 };
+exports.del = function (req,res,next) {
+    var bid = req.query.bid;
+    Blog_model.del_data_by_bid(bid,function (err,data) {
+        if(data.affectedRows > 0){
+            res.redirect('/index')
+        }
+    })
+};

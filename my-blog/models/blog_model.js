@@ -43,3 +43,7 @@ exports.update_data = function (title,content,hid,callback) {
     var sql = "update t_blogs set TITLE=?,CONTENT=? where BLOG_ID=?";
     db.query(sql,[title,content,hid],callback);
 };
+exports.del_data_by_bid = function (bid,callback) {
+    var sql = "delete from t_blogs where BLOG_ID = ?";
+    db.query(sql,[bid],callback);
+}
