@@ -40,6 +40,8 @@ router.get('/update',Blog.update);
 router.post('/update',Blog.do_update);
 //删除博客
 router.get('/del',Blog.del);
+//阅读全文
+router.get('/viewPost',Blog.all);
 
 
 
