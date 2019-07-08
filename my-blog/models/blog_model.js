@@ -13,7 +13,16 @@ var db = require('./db.js');
      db.query(sql,uid,callback);
  };
 
-exports.ins_blog_by_data = function (title,content,date,uid,callback) {
-    var sql = "insert into t_blogs(TITLE,CONTENT,ADD_TIME,WRITER) values(?,?,?,?)"
-    db.query(sql,[title,content,date,uid],callback);
+exports.ins_blog_by_data = function (title,content,cid,date,uid,callback) {
+    var sql = "insert into t_blogs(TITLE,CONTENT,CATALOG_ID,ADD_TIME,WRITER) values(?,?,?,?,?)";
+    db.query(sql,[title,content,cid,date,uid],callback);
+};
+exports.get_catalogs_by_id = function (uid,callback) {
+    var sql = "select * from t_blog_catalogs where USER_ID = ?";
+    db.query(sql,[uid],callback);
+};
+//更新该分类的博客数量
+exports.update_catalog_by_count = function (cid,callback) {
+    var sql="update t_blog_catalogs set BLOG_COUNT=BLOG_COUNT+1 where CATALOG_ID=?";
+    db.query(sql,[cid],callback);
 };

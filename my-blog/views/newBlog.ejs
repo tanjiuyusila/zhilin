@@ -85,12 +85,9 @@
     <input name="title" id="f_title" class="TEXT" style="width: 400px;" type="text">
 	存放于 
 	<select name="catalog">
-	)
-	  <option selected="selected" value="92334">工作日志</option>
-	)
-	  <option value="92335">日常记录</option>
-	)
-	  <option value="92336">转贴的文章</option>
+	<% catalogs.forEach(function (catalog,index) { %>
+	  <option selected="selected" value="<%= catalog.CATALOG_ID%>"><%= catalog.NAME%></option>
+	<% })%>
 		</select>
 	<a href="blogCatalogs.htm" onclick="return confirm('是否放弃当前编辑进入分类管理？');">分类管理»</a>
 	</td>

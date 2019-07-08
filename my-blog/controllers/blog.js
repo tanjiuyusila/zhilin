@@ -23,9 +23,17 @@ exports.index = function (req,res,next) {
 };
 
 exports.add = function (req,res,next) {
-     res.render('newBlog',{
-         "sess":req.session, //不全局有效，要重新赋值
-     })
+    var uid = req.session.USER_ID;
+    Blog_model.get_catalogs_by_id(uid,function (err,data) {
+        console.log(data);
+        res.render('newBlog',{
+            "sess":req.session,
+            "catalogs":data,
+        })
+    });
+     // res.render('newBlog',{
+     //     "sess":req.session, //不全局有效，要重新赋值
+     // })
 };
 exports.do_add = function (req,res,next) {
     //title content time uid
@@ -36,9 +44,20 @@ exports.do_add = function (req,res,next) {
     // console.log(moment().format());
     var date = moment().format();
     var uid = req.session.USER_ID;
-    Blog_model.ins_blog_by_data(title,content,date,uid,function (err,data) {
+    var cid = req.body.catalog;
+    // console.log(title,content,date,uid,cid);
+
+    Blog_model.ins_blog_by_data(title,content,cid,date,uid,function (err,data) {
         if(data.affectedRows > 0){
-            res.redirect('/index');
+            //修改该种类的博客数量（+1）
+            Blog_model.update_catalog_by_count(cid,function (err,data) {
+                // console.log(data);
+                if(data.affectedRows > 0){
+                    res.redirect('/index');
+                }
+
+            });
+
         }
     });
 };
