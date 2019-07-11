@@ -122,7 +122,7 @@ exports.all=function(req,res,next){
             Blog_model.sel_data_by_bid(bid,function(err,data){
                 if(data.length>0){
                     var blog_data_one=data[0];
-                    //console.log(blog_data_one);
+                    console.log(blog_data_one);
                     Blog_model.get_up_by_one(bid,function(err,data){
                         if(data.length>0){
                             var up_data=data[0];
@@ -138,7 +138,7 @@ exports.all=function(req,res,next){
                                 var down_data="";
                             }
 
-                            //console.log(down_data);
+                            console.log(down_data);
                             res.render("viewPost_logined",{
                                 'sess':req.session,
                                 'maindata':blog_data_one,
